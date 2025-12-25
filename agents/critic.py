@@ -74,33 +74,29 @@ class CriticAgent:
 
     REVIEW_PROMPT = """You are a quality control critic for educational video frames.
 
-Review this image against the scene requirements:
+Review this image for VIDEO PRODUCTION quality:
 - Title: {title}
 - Visual Description: {visual_description}
-- Required Pose: {pose}
-- Text Overlay (if any): {text_overlay}
+- Required Pose/Action: {pose}
 
-STYLE REQUIREMENTS:
-- Minimalist white stick figure character
-- Round head with two dot eyes
-- Thick black outlines
-- Heavy shadows beneath character
-- White highlights on shapes
-- Clean gradient background
-- 16:9 aspect ratio
+CHECK FOR MAJOR ISSUES ONLY:
+1. Is the main subject fully visible (not cut off at edges)?
+2. Is the composition balanced and usable for video?
+3. Does it roughly match the visual description concept?
+4. Is it clear and professional looking?
 
-CHECK FOR ISSUES:
-1. Is the stick figure fully visible (not cut off at edges)?
-2. Does the pose match the required pose?
-3. Is there any text overlapping the figure awkwardly?
-4. Is the composition balanced and professional?
-5. Does it match the visual description?
-6. Is the style consistent (thick outlines, shadows, highlights)?
+IGNORE minor style differences. Focus on: visibility, composition, clarity.
 
 RESPOND IN JSON FORMAT ONLY:
-{{"has_issues": true, "issues": ["issue 1"], "suggested_improvements": "fix description", "quality_score": 0.7}}
+{{"has_issues": true/false, "issues": ["major issue"], "suggested_improvements": "fix", "quality_score": 0.0-1.0}}
 
-Be lenient - only flag major issues. Score 0.8+ if acceptable."""
+Scoring guide:
+- 0.9+: Excellent, ready for production
+- 0.8+: Good, minor imperfections OK
+- 0.7+: Acceptable for video use
+- <0.7: Has major issues (cut off, wrong subject, blurry)
+
+Be LENIENT. Only fail images with MAJOR production issues."""
 
     def __init__(
         self,
@@ -120,7 +116,7 @@ Be lenient - only flag major issues. Score 0.8+ if acceptable."""
             },
             CriticProvider.GROQ: {
                 "url": "https://api.groq.com/openai/v1/chat/completions",
-                "model": "llama-3.2-90b-vision-preview"
+                "model": "meta-llama/llama-4-scout-17b-16e-instruct"
             },
             CriticProvider.QWEN: {
                 "url": "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions",
@@ -128,10 +124,29 @@ Be lenient - only flag major issues. Score 0.8+ if acceptable."""
             }
         }
 
-    def _encode_image(self, image_path: str) -> str:
-        """Encode image to base64."""
-        with open(image_path, "rb") as f:
-            return base64.b64encode(f.read()).decode()
+    def _encode_image(self, image_path: str, max_size: int = 1024) -> str:
+        """Encode image to base64, resizing if needed for API limits."""
+        try:
+            from PIL import Image
+            import io
+
+            img = Image.open(image_path)
+
+            # Resize if larger than max_size
+            if max(img.size) > max_size:
+                ratio = max_size / max(img.size)
+                new_size = (int(img.size[0] * ratio), int(img.size[1] * ratio))
+                img = img.resize(new_size, Image.LANCZOS)
+
+            # Convert to JPEG for smaller size
+            buffer = io.BytesIO()
+            img.convert('RGB').save(buffer, format='JPEG', quality=85)
+            return base64.b64encode(buffer.getvalue()).decode()
+
+        except ImportError:
+            # Fallback without PIL
+            with open(image_path, "rb") as f:
+                return base64.b64encode(f.read()).decode()
 
     def _review_single_scene(self, scene: Scene) -> CriticFeedback:
         """Review a single scene's image using configured provider."""
@@ -213,6 +228,7 @@ Be lenient - only flag major issues. Score 0.8+ if acceptable."""
     def _call_groq(self, prompt: str, image_data: str) -> str:
         """Call Groq Llama 3.2 Vision API (free!)."""
         # Note: Groq vision doesn't support system messages
+        # Use smaller model (11b) for reliability, 90b can timeout
         response = requests.post(
             self.provider_config[CriticProvider.GROQ]["url"],
             headers={
@@ -220,22 +236,23 @@ Be lenient - only flag major issues. Score 0.8+ if acceptable."""
                 "Authorization": f"Bearer {self.api_key}"
             },
             json={
-                "model": self.provider_config[CriticProvider.GROQ]["model"],
+                "model": "meta-llama/llama-4-scout-17b-16e-instruct",  # Current Groq vision model
                 "messages": [{
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": prompt},
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:image/png;base64,{image_data}"
+                                "url": f"data:image/jpeg;base64,{image_data}"
                             }
-                        }
+                        },
+                        {"type": "text", "text": prompt}
                     ]
                 }],
                 "temperature": 0.1,
                 "max_tokens": 500
-            }
+            },
+            timeout=30
         )
         response.raise_for_status()
         data = response.json()
