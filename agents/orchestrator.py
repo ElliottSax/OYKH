@@ -23,6 +23,13 @@ from .planner import PlannerAgent, Storyboard
 from .coder import ImageCoderAgent, GenerationResult
 from .critic import CriticAgent, CriticReport, CriticProvider
 
+# Try to import Manim coder (optional)
+try:
+    from .manim_coder import ManimCoder, ScopeRefineConfig
+    MANIM_AVAILABLE = True
+except ImportError:
+    MANIM_AVAILABLE = False
+
 
 @dataclass
 class PipelineConfig:
@@ -47,6 +54,12 @@ class PipelineConfig:
 
     # Critic provider: "gemini", "groq", or "qwen"
     critic_provider: str = "gemini"
+
+    # Coder type: "flux" (AI images) or "manim" (programmatic)
+    coder_type: str = "flux"
+
+    # Manim settings (only used if coder_type="manim")
+    manim_python_path: str = "/mnt/e/projects/pod/venv/bin/python3"
 
     # Performance
     image_workers: int = 5
@@ -88,11 +101,24 @@ class VideoOrchestrator:
 
         # Initialize agents
         self.planner = PlannerAgent(config.deepseek_api_key)
-        self.coder = ImageCoderAgent(
-            config.replicate_api_key,
-            config.output_dir,
-            max_workers=config.image_workers
-        )
+
+        # Select coder based on config
+        if config.coder_type == "manim":
+            if not MANIM_AVAILABLE:
+                raise ImportError("Manim coder not available. Install manim: pip install manim")
+            self.coder = ManimCoder(
+                api_key=config.deepseek_api_key,
+                python_path=config.manim_python_path,
+                output_dir=config.output_dir
+            )
+            self.use_manim = True
+        else:
+            self.coder = ImageCoderAgent(
+                config.replicate_api_key,
+                config.output_dir,
+                max_workers=config.image_workers
+            )
+            self.use_manim = False
 
         # Select critic provider and API key
         critic_provider = CriticProvider(config.critic_provider)
@@ -135,15 +161,19 @@ class VideoOrchestrator:
         return self.storyboard
 
     def generate_images(self, feedback_map: dict = None) -> list:
-        """Step 2: Generate images in parallel."""
-        self._log(f"🎨 Generating images ({self.config.image_workers} workers)...")
-
-        results = self.coder.generate_all(self.storyboard, feedback_map)
-
-        success = sum(1 for r in results if r.success)
-        failed = len(results) - success
-
-        self._log(f"✅ Generated {success} images ({failed} failed)")
+        """Step 2: Generate images."""
+        if self.use_manim:
+            self._log("🎨 Generating Manim animations (with ScopeRefine)...")
+            results = self.coder.generate_storyboard(self.storyboard)
+            success = sum(1 for r in results if r.output_path)
+            failed = len(results) - success
+            self._log(f"✅ Generated {success} animations ({failed} failed)")
+        else:
+            self._log(f"🎨 Generating images ({self.config.image_workers} workers)...")
+            results = self.coder.generate_all(self.storyboard, feedback_map)
+            success = sum(1 for r in results if r.success)
+            failed = len(results) - success
+            self._log(f"✅ Generated {success} images ({failed} failed)")
 
         return results
 
