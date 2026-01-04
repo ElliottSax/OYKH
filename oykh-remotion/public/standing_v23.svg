@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v23: Fix shoulder mask, add pronounced feet, remove gradient artifacts -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <!-- Clean gradient - no focal point, centered properly -->
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <!-- SIMPLER arm mask - just the torso rectangle, not shoulder curves -->
+            <!-- This prevents cutting off arm outlines at shoulder junction -->
+            <mask id="armMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <!-- Simple torso box - avoids shoulder interference -->
+                <rect x="445" y="400" width="134" height="260" rx="20" fill="black"/>
+            </mask>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512.0" cy="263.35" r="121.71"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512.0" cy="920" rx="180" ry="25" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- UNIFIED BODY + LEGS with PRONOUNCED FEET -->
+            <path d="M 447.6 346.1
+                Q 456.9 364.8 439.4 397.6
+                Q 438.7 516.5 441.8 608.3
+                L 442 615
+                C 438 650 432 700 425 760
+                C 418 810 405 855 395 880
+                Q 380 900 370 900
+                L 360 905
+                Q 350 915 360 920
+                L 430 920
+                Q 450 920 455 905
+                Q 465 885 475 840
+                C 485 790 495 720 502 665
+                L 512 650
+                L 522 665
+                C 529 720 539 790 549 840
+                Q 559 885 569 905
+                Q 574 920 594 920
+                L 664 920
+                Q 674 915 664 905
+                L 654 900
+                Q 644 900 629 880
+                C 619 855 606 810 599 760
+                C 592 700 586 650 582 615
+                L 582.2 608.3
+                Q 585.3 516.5 584.6 397.6
+                Q 567.1 364.8 576.4 346.1
+                Q 512.0 336.7 447.6 346.1
+                Z"
+                  fill="url(#bodyFill)" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- ARMS: Fill first -->
+            <path d="M 438 385
+                   C 425 415 400 510 392 555
+                   C 385 585 388 615 408 628
+                   Q 425 638 442 625
+                   C 455 610 452 580 447 555
+                   C 454 510 475 420 485 390
+                   Q 470 375 438 385
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+            <path d="M 586 385
+                   C 599 415 624 510 632 555
+                   C 639 585 636 615 616 628
+                   Q 599 638 582 625
+                   C 569 610 572 580 577 555
+                   C 570 510 549 420 539 390
+                   Q 554 375 586 385
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- ARM strokes (masked only in torso area, not shoulders) -->
+            <g mask="url(#armMask)">
+                <path d="M 438 385
+                       C 425 415 400 510 392 555
+                       C 385 585 388 615 408 628
+                       Q 425 638 442 625
+                       C 455 610 452 580 447 555
+                       C 454 510 475 420 485 390
+                       Q 470 375 438 385
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+                <path d="M 586 385
+                       C 599 415 624 510 632 555
+                       C 639 585 636 615 616 628
+                       Q 599 638 582 625
+                       C 569 610 572 580 577 555
+                       C 570 510 549 420 539 390
+                       Q 554 375 586 385
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- HEAD -->
+            <circle cx="512.0" cy="263.35" r="121.71"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 540 180 A 90 90 0 0 1 600 240"
+                  stroke="white" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.4"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="493" cy="265" rx="12" ry="15" fill="#202038"/>
+            <ellipse cx="531" cy="265" rx="12" ry="15" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="490" cy="260" r="3.5" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="528" cy="260" r="3.5" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

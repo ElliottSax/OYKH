@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v30: Minimal fixes from v29:
+         1. Add bodyOutlineMask to hide shoulder contour lines
+         2. Hips flush with legs
+         3. Narrower legs
+         4. Realistic foot shape
+         5. Curved mitten hands -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <!-- Mask for arm strokes - hides inside body -->
+            <mask id="armMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <ellipse cx="512" cy="520" rx="75" ry="150" fill="black"/>
+            </mask>
+
+            <!-- Mask for body outline - hides where arms attach -->
+            <mask id="bodyOutlineMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <!-- Left arm shape -->
+                <path d="M 402 405
+                       C 370 435 340 530 330 595
+                       C 325 640 335 685 365 700
+                       Q 390 710 415 695
+                       C 435 675 425 630 415 595
+                       C 425 540 455 450 467 415
+                       Q 440 395 402 405
+                       Z" fill="black"/>
+                <!-- Right arm shape -->
+                <path d="M 622 405
+                       C 654 435 684 530 694 595
+                       C 699 640 689 685 659 700
+                       Q 634 710 609 695
+                       C 589 675 599 630 609 595
+                       C 599 540 569 450 557 415
+                       Q 584 395 622 405
+                       Z" fill="black"/>
+            </mask>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512" cy="250" r="115"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512" cy="940" rx="180" ry="25" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- BODY - narrower legs, flush hips, realistic feet -->
+            <path d="
+                M 482 365
+                L 482 380
+                Q 405 392 400 425
+                L 398 485
+                Q 395 555 408 615
+                Q 418 670 435 720
+                C 432 770 420 830 410 880
+                L 400 910
+                L 395 920
+                Q 390 935 410 940
+                L 460 940
+                Q 480 935 478 920
+                L 475 900
+                C 485 850 500 780 508 720
+                L 512 690
+                L 516 720
+                C 524 780 539 850 549 900
+                L 546 920
+                Q 544 935 564 940
+                L 614 940
+                Q 634 935 629 920
+                L 624 910
+                L 614 880
+                C 604 830 592 770 589 720
+                Q 606 670 616 615
+                Q 629 555 626 485
+                L 624 425
+                Q 619 392 542 380
+                L 542 365
+                Q 512 355 482 365
+                Z"
+                  fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- Body outline (masked where arms attach) -->
+            <g mask="url(#bodyOutlineMask)">
+                <path d="
+                    M 482 365
+                    L 482 380
+                    Q 405 392 400 425
+                    L 398 485
+                    Q 395 555 408 615
+                    Q 418 670 435 720
+                    C 432 770 420 830 410 880
+                    L 400 910
+                    L 395 920
+                    Q 390 935 410 940
+                    L 460 940
+                    Q 480 935 478 920
+                    L 475 900
+                    C 485 850 500 780 508 720
+                    L 512 690
+                    L 516 720
+                    C 524 780 539 850 549 900
+                    L 546 920
+                    Q 544 935 564 940
+                    L 614 940
+                    Q 634 935 629 920
+                    L 624 910
+                    L 614 880
+                    C 604 830 592 770 589 720
+                    Q 606 670 616 615
+                    Q 629 555 626 485
+                    L 624 425
+                    Q 619 392 542 380
+                    L 542 365
+                    Q 512 355 482 365
+                    Z"
+                      fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- LEFT ARM - curved mitten hand -->
+            <path d="M 402 405
+                   C 370 435 340 530 330 595
+                   C 325 640 335 685 365 700
+                   Q 390 710 415 695
+                   C 435 675 425 630 415 595
+                   C 425 540 455 450 467 415
+                   Q 440 395 402 405
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- RIGHT ARM - curved mitten hand -->
+            <path d="M 622 405
+                   C 654 435 684 530 694 595
+                   C 699 640 689 685 659 700
+                   Q 634 710 609 695
+                   C 589 675 599 630 609 595
+                   C 599 540 569 450 557 415
+                   Q 584 395 622 405
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- ARM strokes (masked by torso) -->
+            <g mask="url(#armMask)">
+                <path d="M 402 405
+                       C 370 435 340 530 330 595
+                       C 325 640 335 685 365 700
+                       Q 390 710 415 695
+                       C 435 675 425 630 415 595
+                       C 425 540 455 450 467 415
+                       Q 440 395 402 405
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+                <path d="M 622 405
+                       C 654 435 684 530 694 595
+                       C 699 640 689 685 659 700
+                       Q 634 710 609 695
+                       C 589 675 599 630 609 595
+                       C 599 540 569 450 557 415
+                       Q 584 395 622 405
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- HEAD -->
+            <circle cx="512" cy="250" r="115"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 545 155 A 85 85 0 0 1 600 210"
+                  stroke="white" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.4"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="485" cy="255" rx="13" ry="16" fill="#202038"/>
+            <ellipse cx="539" cy="255" rx="13" ry="16" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="482" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="536" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

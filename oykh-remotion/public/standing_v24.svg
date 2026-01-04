@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v24: Proper human anatomy - shoulders extend outward, arms attach at sides -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <!-- Mask for arm strokes - uses torso shape -->
+            <mask id="armMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <ellipse cx="512" cy="520" rx="85" ry="160" fill="black"/>
+            </mask>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512" cy="250" r="115"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512" cy="920" rx="180" ry="25" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- UNIFIED BODY with PROPER SHOULDERS + LEGS + FEET -->
+            <!--
+                Anatomy from top to bottom:
+                - Neck at x=480-544 (narrow)
+                - Shoulders widen to x=400-624
+                - Torso tapers to waist x=440-584
+                - Hips at x=435-589
+                - Legs split, each ~50px wide
+                - Feet extend forward
+            -->
+            <path d="
+                M 480 365
+                L 480 380
+                Q 400 390 395 420
+                L 390 480
+                Q 385 550 400 610
+                Q 405 650 420 680
+                C 415 720 405 780 395 840
+                Q 380 880 365 895
+                L 355 900
+                Q 340 910 355 918
+                L 425 918
+                Q 445 915 450 895
+                C 460 850 475 780 490 720
+                Q 505 665 512 655
+                Q 519 665 534 720
+                C 549 780 564 850 574 895
+                Q 579 915 599 918
+                L 669 918
+                Q 684 910 669 900
+                L 659 895
+                Q 644 880 629 840
+                C 619 780 609 720 604 680
+                Q 619 650 624 610
+                Q 639 550 634 480
+                L 629 420
+                Q 624 390 544 380
+                L 544 365
+                Q 512 355 480 365
+                Z"
+                  fill="url(#bodyFill)" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- LEFT ARM - attaches at LEFT SHOULDER (x~395, y~420) -->
+            <path d="M 395 420
+                   C 370 440 340 520 330 580
+                   C 322 620 328 660 355 675
+                   Q 375 685 395 670
+                   C 415 650 408 610 400 580
+                   C 408 530 430 460 440 430
+                   Q 420 410 395 420
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- RIGHT ARM - attaches at RIGHT SHOULDER (x~629, y~420) -->
+            <path d="M 629 420
+                   C 654 440 684 520 694 580
+                   C 702 620 696 660 669 675
+                   Q 649 685 629 670
+                   C 609 650 616 610 624 580
+                   C 616 530 594 460 584 430
+                   Q 604 410 629 420
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- ARM strokes (masked by torso) -->
+            <g mask="url(#armMask)">
+                <path d="M 395 420
+                       C 370 440 340 520 330 580
+                       C 322 620 328 660 355 675
+                       Q 375 685 395 670
+                       C 415 650 408 610 400 580
+                       C 408 530 430 460 440 430
+                       Q 420 410 395 420
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+                <path d="M 629 420
+                       C 654 440 684 520 694 580
+                       C 702 620 696 660 669 675
+                       Q 649 685 629 670
+                       C 609 650 616 610 624 580
+                       C 616 530 594 460 584 430
+                       Q 604 410 629 420
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- HEAD -->
+            <circle cx="512" cy="250" r="115"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 545 155 A 85 85 0 0 1 600 210"
+                  stroke="white" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.4"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="485" cy="255" rx="13" ry="16" fill="#202038"/>
+            <ellipse cx="539" cy="255" rx="13" ry="16" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="482" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="536" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

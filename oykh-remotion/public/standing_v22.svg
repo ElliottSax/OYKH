@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v22: UNIFIED body+legs as ONE shape, flat fill to isolate gradient issues -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <!-- Simple gradient without focal point offset -->
+            <radialGradient id="bodyFill" cx="50%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="40%" stop-color="#F8F8FC"/>
+                <stop offset="80%" stop-color="#EEEEF4"/>
+                <stop offset="100%" stop-color="#E0E0E8"/>
+            </radialGradient>
+
+            <!-- Mask for arm strokes -->
+            <mask id="armMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <!-- Unified body+legs shape blocks arm strokes -->
+                <path d="M 447.6 346.1
+                    Q 456.9 364.8 439.4 397.6
+                    Q 438.7 516.5 441.8 608.3
+                    L 442 620
+                    C 440 650 435 700 430 760
+                    C 425 810 410 850 400 870
+                    Q 385 895 415 900
+                    Q 450 905 465 875
+                    C 475 840 485 780 490 720
+                    C 495 670 500 640 512 635
+                    C 524 640 529 670 534 720
+                    C 539 780 549 840 559 875
+                    Q 574 905 609 900
+                    Q 639 895 624 870
+                    C 614 850 599 810 594 760
+                    C 589 700 584 650 582 620
+                    L 582.2 608.3
+                    Q 585.3 516.5 584.6 397.6
+                    Q 567.1 364.8 576.4 346.1
+                    Q 512.0 336.7 447.6 346.1
+                    Z" fill="black"/>
+            </mask>
+
+            <!-- Mask for body stroke (hide where arms attach) -->
+            <mask id="bodyMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <path d="M 440 390
+                   C 430 420 405 520 400 560
+                   C 392 585 395 615 415 625
+                   Q 430 630 445 620
+                   C 455 605 450 575 445 555
+                   C 450 510 465 420 470 395
+                   Q 460 385 440 390
+                   Z" fill="black"/>
+                <path d="M 584 390
+                   C 594 420 619 520 624 560
+                   C 632 585 629 615 609 625
+                   Q 594 630 579 620
+                   C 569 605 574 575 579 555
+                   C 574 510 559 420 554 395
+                   Q 564 385 584 390
+                   Z" fill="black"/>
+            </mask>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512.0" cy="263.35" r="121.71"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512.0" cy="905" rx="150" ry="22" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- UNIFIED BODY + LEGS as ONE shape -->
+            <!-- This eliminates the segmentation by making it truly one piece -->
+            <path d="M 447.6 346.1
+                Q 456.9 364.8 439.4 397.6
+                Q 438.7 516.5 441.8 608.3
+                L 442 620
+                C 440 650 435 700 430 760
+                C 425 810 410 850 400 870
+                Q 385 895 415 900
+                Q 450 905 465 875
+                C 475 840 485 780 490 720
+                C 495 670 500 640 512 635
+                C 524 640 529 670 534 720
+                C 539 780 549 840 559 875
+                Q 574 905 609 900
+                Q 639 895 624 870
+                C 614 850 599 810 594 760
+                C 589 700 584 650 582 620
+                L 582.2 608.3
+                Q 585.3 516.5 584.6 397.6
+                Q 567.1 364.8 576.4 346.1
+                Q 512.0 336.7 447.6 346.1
+                Z"
+                  fill="url(#bodyFill)" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- Inner leg division lines (to show two legs without segmentation) -->
+            <path d="M 512 635 L 512 650" stroke="#202038" stroke-width="8" stroke-linecap="round" opacity="0.3"/>
+
+            <!-- ARMS: Fill only -->
+            <path d="M 440 390
+                   C 430 420 405 520 400 560
+                   C 392 585 395 615 415 625
+                   Q 430 630 445 620
+                   C 455 605 450 575 445 555
+                   C 450 510 465 420 470 395
+                   Q 460 385 440 390
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+            <path d="M 584 390
+                   C 594 420 619 520 624 560
+                   C 632 585 629 615 609 625
+                   Q 594 630 579 620
+                   C 569 605 574 575 579 555
+                   C 574 510 559 420 554 395
+                   Q 564 385 584 390
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- ARM strokes (masked at shoulder) -->
+            <g mask="url(#armMask)">
+                <path d="M 440 390
+                       C 430 420 405 520 400 560
+                       C 392 585 395 615 415 625
+                       Q 430 630 445 620
+                       C 455 605 450 575 445 555
+                       C 450 510 465 420 470 395
+                       Q 460 385 440 390
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+                <path d="M 584 390
+                       C 594 420 619 520 624 560
+                       C 632 585 629 615 609 625
+                       Q 594 630 579 620
+                       C 569 605 574 575 579 555
+                       C 574 510 559 420 554 395
+                       Q 564 385 584 390
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- HEAD -->
+            <circle cx="512.0" cy="263.35" r="121.71"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 535 185 A 85 85 0 0 1 590 235"
+                  stroke="#F0F0F5" stroke-width="14" fill="none"
+                  stroke-linecap="round" opacity="0.5"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="493" cy="265" rx="12" ry="15" fill="#202038"/>
+            <ellipse cx="531" cy="265" rx="12" ry="15" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="490" cy="260" r="3.5" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="528" cy="260" r="3.5" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

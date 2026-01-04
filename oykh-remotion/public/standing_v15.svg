@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v15: Complete redesign from scratch -->
+    <!-- Chunky proportions, mitten hands, smooth curves -->
+    <!-- Arms start DEEP inside body for clean shoulder connection -->
+
+    <defs>
+        <!-- Background gradient -->
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+
+        <!-- Body fill gradient (upper-right highlight) -->
+        <radialGradient id="bodyFill" cx="65%" cy="25%" r="75%" fx="70%" fy="20%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="40%" stop-color="#FAFAFA"/>
+            <stop offset="70%" stop-color="#EEEEEE"/>
+            <stop offset="100%" stop-color="#E0E0E8"/>
+        </radialGradient>
+
+        <!-- Drop shadow filter -->
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+            <feOffset dx="6" dy="10" result="shadow"/>
+            <feFlood flood-color="#1a1a2e" flood-opacity="0.4"/>
+            <feComposite in2="shadow" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- MASK: Hides arm strokes where they enter the body -->
+        <!-- Body shape in black = arm stroke hidden there -->
+        <mask id="armMask">
+            <rect width="2000" height="2000" fill="white"/>
+            <path d="M 960 340
+                     C 1040 340, 1075 375, 1080 430
+                     C 1085 500, 1075 560, 1050 600
+                     Q 1010 630, 960 635
+                     Q 910 630, 870 600
+                     C 845 560, 835 500, 840 430
+                     C 845 375, 880 340, 960 340
+                     Z" fill="black"/>
+        </mask>
+
+        <!-- MASK: Hides body stroke where arms overlap -->
+        <!-- Both arm shapes in black = body stroke hidden there -->
+        <mask id="bodyMask">
+            <rect width="2000" height="2000" fill="white"/>
+            <!-- Left arm -->
+            <path d="M 875 400
+                     C 855 430, 825 500, 800 570
+                     C 785 610, 775 650, 780 685
+                     Q 790 720, 820 725
+                     Q 850 725, 870 700
+                     C 880 665, 880 625, 875 585
+                     C 885 530, 905 465, 920 420
+                     Q 905 395, 875 400
+                     Z" fill="black"/>
+            <!-- Right arm -->
+            <path d="M 1045 400
+                     C 1065 430, 1095 500, 1120 570
+                     C 1135 610, 1145 650, 1140 685
+                     Q 1130 720, 1100 725
+                     Q 1070 725, 1050 700
+                     C 1040 665, 1040 625, 1045 585
+                     C 1035 530, 1015 465, 1000 420
+                     Q 1015 395, 1045 400
+                     Z" fill="black"/>
+        </mask>
+
+        <!-- Clip paths for reflection strokes -->
+        <clipPath id="headClip">
+            <circle cx="960" cy="245" r="95"/>
+        </clipPath>
+        <clipPath id="bodyClip">
+            <path d="M 960 340
+                     C 1040 340, 1075 375, 1080 430
+                     C 1085 500, 1075 560, 1050 600
+                     Q 1010 630, 960 635
+                     Q 910 630, 870 600
+                     C 845 560, 835 500, 840 430
+                     C 845 375, 880 340, 960 340
+                     Z"/>
+        </clipPath>
+    </defs>
+
+    <!-- Background -->
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <!-- Ground shadow -->
+    <ellipse cx="960" cy="870" rx="140" ry="22" fill="rgba(30, 30, 50, 0.5)"/>
+
+    <!-- CHARACTER GROUP -->
+    <g id="character" filter="url(#shadow)">
+
+        <!-- ========== LEGS (behind everything, full stroke) ========== -->
+
+        <!-- Left Leg: chunky thigh, tapered calf, rounded foot -->
+        <path d="M 925 610
+                 C 905 625, 885 665, 875 720
+                 C 868 765, 872 800, 885 835
+                 Q 895 860, 915 865
+                 Q 940 868, 955 855
+                 Q 965 840, 960 815
+                 C 955 780, 950 745, 952 700
+                 C 955 660, 960 630, 958 615
+                 Q 945 605, 925 610
+                 Z"
+              fill="url(#bodyFill)" stroke="#202038" stroke-width="14"
+              stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- Right Leg: mirror of left -->
+        <path d="M 995 610
+                 C 1015 625, 1035 665, 1045 720
+                 C 1052 765, 1048 800, 1035 835
+                 Q 1025 860, 1005 865
+                 Q 980 868, 965 855
+                 Q 955 840, 960 815
+                 C 965 780, 970 745, 968 700
+                 C 965 660, 960 630, 962 615
+                 Q 975 605, 995 610
+                 Z"
+              fill="url(#bodyFill)" stroke="#202038" stroke-width="14"
+              stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- ========== ARMS (fill first, stroke masked) ========== -->
+
+        <!-- Left Arm FILL: starts deep inside body, chunky, mitten hand -->
+        <path d="M 875 400
+                 C 855 430, 825 500, 800 570
+                 C 785 610, 775 650, 780 685
+                 Q 790 720, 820 725
+                 Q 850 725, 870 700
+                 C 880 665, 880 625, 875 585
+                 C 885 530, 905 465, 920 420
+                 Q 905 395, 875 400
+                 Z"
+              fill="url(#bodyFill)" stroke="none"/>
+
+        <!-- Right Arm FILL: mirror -->
+        <path d="M 1045 400
+                 C 1065 430, 1095 500, 1120 570
+                 C 1135 610, 1145 650, 1140 685
+                 Q 1130 720, 1100 725
+                 Q 1070 725, 1050 700
+                 C 1040 665, 1040 625, 1045 585
+                 C 1035 530, 1015 465, 1000 420
+                 Q 1015 395, 1045 400
+                 Z"
+              fill="url(#bodyFill)" stroke="none"/>
+
+        <!-- Arm STROKES (masked where they enter body) -->
+        <g mask="url(#armMask)">
+            <!-- Left Arm stroke -->
+            <path d="M 875 400
+                     C 855 430, 825 500, 800 570
+                     C 785 610, 775 650, 780 685
+                     Q 790 720, 820 725
+                     Q 850 725, 870 700
+                     C 880 665, 880 625, 875 585
+                     C 885 530, 905 465, 920 420
+                     Q 905 395, 875 400
+                     Z"
+                  fill="none" stroke="#202038" stroke-width="14"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+            <!-- Right Arm stroke -->
+            <path d="M 1045 400
+                     C 1065 430, 1095 500, 1120 570
+                     C 1135 610, 1145 650, 1140 685
+                     Q 1130 720, 1100 725
+                     Q 1070 725, 1050 700
+                     C 1040 665, 1040 625, 1045 585
+                     C 1035 530, 1015 465, 1000 420
+                     Q 1015 395, 1045 400
+                     Z"
+                  fill="none" stroke="#202038" stroke-width="14"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+        </g>
+
+        <!-- ========== BODY (fill, then masked stroke) ========== -->
+
+        <!-- Body FILL: rounded torso, shoulders to hips -->
+        <path d="M 960 340
+                 C 1040 340, 1075 375, 1080 430
+                 C 1085 500, 1075 560, 1050 600
+                 Q 1010 630, 960 635
+                 Q 910 630, 870 600
+                 C 845 560, 835 500, 840 430
+                 C 845 375, 880 340, 960 340
+                 Z"
+              fill="url(#bodyFill)" stroke="none"/>
+
+        <!-- Body inner shadow at hip -->
+        <ellipse cx="960" cy="620" rx="55" ry="18" fill="#505070" opacity="0.1"
+                 clip-path="url(#bodyClip)"/>
+
+        <!-- Body STROKE (masked where arms overlap) -->
+        <g mask="url(#bodyMask)">
+            <path d="M 960 340
+                     C 1040 340, 1075 375, 1080 430
+                     C 1085 500, 1075 560, 1050 600
+                     Q 1010 630, 960 635
+                     Q 910 630, 870 600
+                     C 845 560, 835 500, 840 430
+                     C 845 375, 880 340, 960 340
+                     Z"
+                  fill="none" stroke="#202038" stroke-width="14"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+        </g>
+
+        <!-- Body reflection highlight -->
+        <path d="M 1010 400 Q 1025 450 1018 500"
+              stroke="#D0D0E0" stroke-width="14" fill="none"
+              stroke-linecap="round" opacity="0.6"
+              clip-path="url(#bodyClip)"/>
+
+        <!-- ========== HEAD (on top, full stroke) ========== -->
+
+        <circle cx="960" cy="245" r="95"
+                fill="url(#bodyFill)" stroke="#202038" stroke-width="14"/>
+
+        <!-- Head reflection highlight -->
+        <path d="M 990 175 A 70 70 0 0 1 1035 220"
+              stroke="#D0D0E0" stroke-width="16" fill="none"
+              stroke-linecap="round" opacity="0.65"
+              clip-path="url(#headClip)"/>
+
+        <!-- ========== FACE ========== -->
+
+        <!-- Eyes -->
+        <ellipse cx="935" cy="250" rx="13" ry="17" fill="#202038"/>
+        <ellipse cx="985" cy="250" rx="13" ry="17" fill="#202038"/>
+
+        <!-- Eye highlights -->
+        <circle cx="932" cy="244" r="4" fill="#FFFFFF" opacity="0.95"/>
+        <circle cx="982" cy="244" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+    </g>
+</svg>

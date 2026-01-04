@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v45: Unified chalk outline with v30's hand/foot shapes
+         - v30 mitten hands (curved bulge)
+         - v30 shoe-shaped feet (heel-sole-toe)
+         - Higher armpit lines
+         - Body stroke masked at head -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <mask id="bodyStrokeMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <circle cx="512" cy="250" r="121" fill="black"/>
+            </mask>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512" cy="250" r="115"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512" cy="945" rx="180" ry="25" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- UNIFIED BODY with v30 hands and feet
+                 Path: neck -> R shoulder -> R arm -> R hand (mitten) ->
+                       R armpit -> R torso -> R leg -> R foot (v30 style) ->
+                       crotch -> L foot -> L leg -> L torso ->
+                       L armpit -> L hand (mitten) -> L arm -> L shoulder -> neck -->
+            <path d="
+                M 482 340
+                Q 512 335 542 340
+                L 542 380
+                Q 619 392 624 425
+                C 654 455 684 550 694 615
+                C 699 660 689 705 659 720
+                Q 634 730 609 715
+                C 589 695 599 650 609 615
+                C 599 560 569 470 557 435
+                L 560 485
+                Q 565 555 570 615
+                Q 580 670 575 720
+                C 572 770 565 830 560 880
+                L 555 910
+                L 550 920
+                Q 545 935 565 940
+                L 615 940
+                Q 635 935 630 920
+                L 625 910
+                L 620 880
+                C 615 830 608 770 605 720
+                Q 600 670 605 615
+                Q 610 555 605 485
+                L 602 435
+                L 512 690
+                L 422 435
+                L 419 485
+                Q 414 555 419 615
+                Q 424 670 419 720
+                C 416 770 409 830 404 880
+                L 399 910
+                L 394 920
+                Q 389 935 409 940
+                L 459 940
+                Q 479 935 474 920
+                L 469 910
+                L 464 880
+                C 459 830 452 770 449 720
+                Q 444 670 454 615
+                Q 459 555 464 485
+                L 467 435
+                C 455 470 425 560 415 615
+                C 425 650 435 695 415 715
+                Q 390 730 365 720
+                C 335 705 325 660 330 615
+                C 340 550 370 455 400 425
+                Q 405 392 482 380
+                L 482 340
+                Z"
+                  fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- BODY STROKE masked at head -->
+            <g mask="url(#bodyStrokeMask)">
+                <path d="
+                    M 482 340
+                    Q 512 335 542 340
+                    L 542 380
+                    Q 619 392 624 425
+                    C 654 455 684 550 694 615
+                    C 699 660 689 705 659 720
+                    Q 634 730 609 715
+                    C 589 695 599 650 609 615
+                    C 599 560 569 470 557 435
+                    L 560 485
+                    Q 565 555 570 615
+                    Q 580 670 575 720
+                    C 572 770 565 830 560 880
+                    L 555 910
+                    L 550 920
+                    Q 545 935 565 940
+                    L 615 940
+                    Q 635 935 630 920
+                    L 625 910
+                    L 620 880
+                    C 615 830 608 770 605 720
+                    Q 600 670 605 615
+                    Q 610 555 605 485
+                    L 602 435
+                    L 512 690
+                    L 422 435
+                    L 419 485
+                    Q 414 555 419 615
+                    Q 424 670 419 720
+                    C 416 770 409 830 404 880
+                    L 399 910
+                    L 394 920
+                    Q 389 935 409 940
+                    L 459 940
+                    Q 479 935 474 920
+                    L 469 910
+                    L 464 880
+                    C 459 830 452 770 449 720
+                    Q 444 670 454 615
+                    Q 459 555 464 485
+                    L 467 435
+                    C 455 470 425 560 415 615
+                    C 425 650 435 695 415 715
+                    Q 390 730 365 720
+                    C 335 705 325 660 330 615
+                    C 340 550 370 455 400 425
+                    Q 405 392 482 380
+                    L 482 340
+                    Z"
+                      fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- Armpit detail lines - high position -->
+            <path d="M 467 480 Q 462 510 464 540"
+                  fill="none" stroke="#202038" stroke-width="8"
+                  stroke-linecap="round" opacity="0.5"/>
+            <path d="M 557 480 Q 562 510 560 540"
+                  fill="none" stroke="#202038" stroke-width="8"
+                  stroke-linecap="round" opacity="0.5"/>
+
+            <!-- HEAD -->
+            <circle cx="512" cy="250" r="115"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 545 155 A 85 85 0 0 1 600 210"
+                  stroke="white" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.4"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="485" cy="255" rx="13" ry="16" fill="#202038"/>
+            <ellipse cx="539" cy="255" rx="13" ry="16" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="482" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="536" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

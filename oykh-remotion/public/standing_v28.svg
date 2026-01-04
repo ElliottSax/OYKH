@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v28: Based on v24 (best yet) with minimal fixes:
+         1. Slightly skinnier torso
+         2. Arms start INSIDE body (5px overlap)
+         3. Bigger, rounder feet with longer toes -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <!-- Mask for arm strokes - ellipse covering torso -->
+            <mask id="armMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <ellipse cx="512" cy="520" rx="80" ry="155" fill="black"/>
+            </mask>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512" cy="250" r="115"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512" cy="940" rx="200" ry="28" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- UNIFIED BODY - slightly skinnier, same structure as v24 -->
+            <!-- Shoulders at x=400-624 (was 395-629), arms will start at 405/619 (inside) -->
+            <path d="
+                M 482 365
+                L 482 380
+                Q 405 392 400 425
+                L 398 485
+                Q 395 555 408 615
+                Q 415 655 428 690
+                C 420 740 405 810 388 870
+                Q 365 910 340 925
+                Q 320 940 350 950
+                Q 400 960 450 950
+                Q 480 940 490 910
+                C 500 860 510 790 512 740
+                L 512 720
+                C 514 790 524 860 534 910
+                Q 544 940 574 950
+                Q 624 960 674 950
+                Q 704 940 684 925
+                Q 659 910 636 870
+                C 619 810 604 740 596 690
+                Q 609 655 616 615
+                Q 629 555 626 485
+                L 624 425
+                Q 619 392 542 380
+                L 542 365
+                Q 512 355 482 365
+                Z"
+                  fill="url(#bodyFill)" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- LEFT ARM - starts INSIDE body at x=405 (body edge is 400) -->
+            <path d="M 405 425
+                   C 375 450 342 535 332 600
+                   C 324 645 332 690 362 708
+                   Q 385 720 408 705
+                   C 430 685 420 635 410 600
+                   C 420 545 448 465 460 430
+                   Q 435 412 405 425
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- RIGHT ARM - starts INSIDE body at x=619 (body edge is 624) -->
+            <path d="M 619 425
+                   C 649 450 682 535 692 600
+                   C 700 645 692 690 662 708
+                   Q 639 720 616 705
+                   C 594 685 604 635 614 600
+                   C 604 545 576 465 564 430
+                   Q 589 412 619 425
+                   Z" fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- ARM strokes (masked by torso) -->
+            <g mask="url(#armMask)">
+                <path d="M 405 425
+                       C 375 450 342 535 332 600
+                       C 324 645 332 690 362 708
+                       Q 385 720 408 705
+                       C 430 685 420 635 410 600
+                       C 420 545 448 465 460 430
+                       Q 435 412 405 425
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+                <path d="M 619 425
+                       C 649 450 682 535 692 600
+                       C 700 645 692 690 662 708
+                       Q 639 720 616 705
+                       C 594 685 604 635 614 600
+                       C 604 545 576 465 564 430
+                       Q 589 412 619 425
+                       Z" fill="none" stroke="#202038" stroke-width="12"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- HEAD -->
+            <circle cx="512" cy="250" r="115"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 545 155 A 85 85 0 0 1 600 210"
+                  stroke="white" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.4"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="485" cy="255" rx="13" ry="16" fill="#202038"/>
+            <ellipse cx="539" cy="255" rx="13" ry="16" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="482" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="536" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

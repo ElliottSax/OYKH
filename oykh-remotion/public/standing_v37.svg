@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v37: Match BCO reference exactly
+         - Unified body shape with single continuous outline
+         - Internal armpit detail lines (short curves inside body)
+         - Curved crotch separation between legs
+         - Smooth hip-to-leg flow, no jutting
+         - Standing pose with arms at sides -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512" cy="250" r="115"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512" cy="945" rx="190" ry="28" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- UNIFIED BODY SHAPE - single path for fill -->
+            <path d="
+                M 512 365
+                Q 480 365 465 375
+                L 460 385
+                C 420 395 395 420 380 460
+                C 360 510 350 570 350 620
+                Q 350 660 370 685
+                Q 390 705 420 700
+                Q 445 695 455 670
+                C 462 645 458 610 455 580
+                C 460 540 470 490 480 455
+                L 475 500
+                Q 468 560 470 620
+                Q 475 680 465 740
+                C 455 800 440 860 425 905
+                Q 415 930 435 940
+                L 485 945
+                Q 505 940 507 920
+                L 512 850
+                L 517 920
+                Q 519 940 539 945
+                L 589 940
+                Q 609 930 599 905
+                C 584 860 569 800 559 740
+                Q 549 680 554 620
+                Q 556 560 549 500
+                L 544 455
+                C 554 490 564 540 569 580
+                C 566 610 562 645 569 670
+                Q 579 695 604 700
+                Q 634 705 654 685
+                Q 674 660 674 620
+                C 674 570 664 510 644 460
+                C 629 420 604 395 564 385
+                L 559 375
+                Q 544 365 512 365
+                Z"
+                  fill="url(#bodyFill)" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- Internal armpit detail lines -->
+            <path d="M 480 455 Q 465 480 460 510"
+                  fill="none" stroke="#202038" stroke-width="8"
+                  stroke-linecap="round" opacity="0.5"/>
+            <path d="M 544 455 Q 559 480 564 510"
+                  fill="none" stroke="#202038" stroke-width="8"
+                  stroke-linecap="round" opacity="0.5"/>
+
+            <!-- Crotch separation line -->
+            <path d="M 465 740 Q 490 760 512 765 Q 534 760 559 740"
+                  fill="none" stroke="#202038" stroke-width="10"
+                  stroke-linecap="round" opacity="0.6"/>
+
+            <!-- HEAD -->
+            <circle cx="512" cy="250" r="115"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 545 155 A 85 85 0 0 1 600 210"
+                  stroke="white" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.4"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="485" cy="255" rx="13" ry="16" fill="#202038"/>
+            <ellipse cx="539" cy="255" rx="13" ry="16" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="482" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="536" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

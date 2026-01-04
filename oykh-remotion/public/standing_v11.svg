@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v11: Fixed hands (smaller), legs (clearly separated), arms (better angle), torso (wider), feet (bigger) -->
+
+    <defs>
+        <linearGradient id="goldenBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+
+        <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+            <feOffset dx="7" dy="12" result="shadow"/>
+            <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+            <feComposite in2="shadow" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <radialGradient id="highlight" cx="60%" cy="15%" r="90%" fx="65%" fy="12%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="30%" stop-color="#FAFAFA"/>
+            <stop offset="60%" stop-color="#ECECF2"/>
+            <stop offset="100%" stop-color="#D8D8E2"/>
+        </radialGradient>
+
+        <clipPath id="bodyClip">
+            <use href="#gingerbread"/>
+        </clipPath>
+    </defs>
+
+    <!-- Background -->
+    <rect width="1920" height="1080" fill="url(#goldenBg)"/>
+
+    <!-- Ground Shadow -->
+    <ellipse cx="960" cy="905" rx="140" ry="18" fill="rgba(30, 30, 50, 0.5)"/>
+
+    <!-- CHARACTER with drop shadow -->
+    <g id="character" filter="url(#dropShadow)">
+
+        <path id="gingerbread" d="
+            M 960 155
+
+            C 1055 155, 1090 210, 1090 275
+            C 1090 330, 1060 365, 1025 390
+
+            C 1050 395, 1075 410, 1095 440
+            C 1115 470, 1125 495, 1125 515
+
+            C 1130 530, 1125 545, 1110 550
+            C 1095 555, 1080 550, 1070 540
+            C 1060 530, 1055 515, 1060 500
+
+            C 1050 495, 1040 495, 1035 500
+
+            C 1040 530, 1045 570, 1045 610
+            C 1045 650, 1040 690, 1035 720
+
+            C 1035 730, 1040 740, 1040 755
+            C 1045 790, 1050 820, 1045 850
+            C 1040 875, 1020 890, 995 890
+
+            C 975 895, 965 895, 965 870
+            C 965 850, 970 825, 975 795
+            C 980 765, 985 735, 985 710
+
+            L 985 700
+            C 985 695, 975 690, 960 690
+            C 945 690, 935 695, 935 700
+            L 935 710
+
+            C 935 735, 940 765, 945 795
+            C 950 825, 955 850, 955 870
+            C 955 895, 945 895, 925 890
+
+            C 900 890, 880 875, 875 850
+            C 870 820, 875 790, 880 755
+            C 880 740, 885 730, 885 720
+
+            C 880 690, 875 650, 875 610
+            C 875 570, 880 530, 885 500
+
+            C 880 495, 870 495, 860 500
+
+            C 865 515, 860 530, 850 540
+            C 840 550, 825 555, 810 550
+            C 795 545, 790 530, 795 515
+
+            C 795 495, 805 470, 825 440
+            C 845 410, 870 395, 895 390
+
+            C 860 365, 830 330, 830 275
+            C 830 210, 865 155, 960 155
+
+            Z
+        " fill="url(#highlight)" stroke="#202038" stroke-width="12" stroke-linejoin="round" stroke-linecap="round"/>
+
+        <!-- Head reflection arc -->
+        <path d="M 995 190 A 55 55 0 0 1 1045 250"
+              stroke="#D0D0E0" stroke-width="16" fill="none"
+              stroke-linecap="round" opacity="0.7"
+              clip-path="url(#bodyClip)"/>
+
+        <!-- Body reflection stroke -->
+        <path d="M 1005 440 Q 1015 480 1010 520"
+              stroke="#D0D0E0" stroke-width="12" fill="none"
+              stroke-linecap="round" opacity="0.6"
+              clip-path="url(#bodyClip)"/>
+
+        <!-- Eyes -->
+        <ellipse cx="935" cy="280" rx="14" ry="18" fill="#202038"/>
+        <ellipse cx="985" cy="280" rx="14" ry="18" fill="#202038"/>
+
+        <!-- Eye highlights -->
+        <circle cx="931" cy="273" r="4.5" fill="#FFFFFF" opacity="0.95"/>
+        <circle cx="981" cy="273" r="4.5" fill="#FFFFFF" opacity="0.95"/>
+
+    </g>
+</svg>

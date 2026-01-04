@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v36: Match reference image style
+         - Single continuous outline (no double lines)
+         - Arm strokes ONLY on exterior edge
+         - Body shoulder serves as arm's inner edge
+         - Small armpit detail line inside body -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512" cy="250" r="115"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512" cy="940" rx="180" ry="25" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- UNIFIED BODY + ARMS as single shape for fill -->
+            <!-- This creates the gingerbread-man unified appearance -->
+            <path d="
+                M 482 365
+                L 482 380
+                Q 440 385 410 400
+                C 380 420 355 500 348 560
+                C 342 600 348 645 368 665
+                Q 386 680 406 675
+                Q 426 668 434 650
+                C 440 625 436 585 430 555
+                C 435 510 448 460 458 430
+                Q 430 425 400 430
+                Q 395 460 398 490
+                Q 395 555 408 615
+                Q 418 670 435 720
+                C 432 770 420 830 410 880
+                L 400 910
+                Q 390 935 410 940
+                L 460 940
+                Q 480 935 478 920
+                C 485 860 500 790 508 730
+                L 512 700
+                L 516 730
+                C 524 790 539 860 546 920
+                Q 544 935 564 940
+                L 614 940
+                Q 634 935 624 910
+                L 614 880
+                C 604 830 592 770 589 720
+                Q 606 670 616 615
+                Q 629 555 626 490
+                Q 629 460 624 430
+                Q 594 425 566 430
+                C 576 460 589 510 594 555
+                C 588 585 584 625 590 650
+                Q 598 668 618 675
+                Q 638 680 656 665
+                C 676 645 682 600 676 560
+                C 669 500 644 420 614 400
+                Q 584 385 542 380
+                L 542 365
+                Q 512 355 482 365
+                Z"
+                  fill="url(#bodyFill)" stroke="none"/>
+
+            <!-- BODY OUTLINE - main torso shape -->
+            <path d="
+                M 482 365
+                L 482 380
+                Q 440 385 410 400
+                M 614 400
+                Q 584 385 542 380
+                L 542 365
+                Q 512 355 482 365"
+                  fill="none" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- Left arm EXTERIOR stroke only -->
+            <path d="M 410 400
+                   C 380 420 355 500 348 560
+                   C 342 600 348 645 368 665
+                   Q 386 680 406 675
+                   Q 426 668 434 650
+                   C 440 625 436 585 430 555
+                   C 435 510 448 460 458 430"
+                  fill="none" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- Right arm EXTERIOR stroke only -->
+            <path d="M 614 400
+                   C 644 420 669 500 676 560
+                   C 682 600 676 645 656 665
+                   Q 638 680 618 675
+                   Q 598 668 590 650
+                   C 584 625 588 585 594 555
+                   C 589 510 576 460 566 430"
+                  fill="none" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- Body sides and legs outline -->
+            <path d="M 458 430
+                   Q 430 425 400 430
+                   Q 395 460 398 490
+                   Q 395 555 408 615
+                   Q 418 670 435 720
+                   C 432 770 420 830 410 880
+                   L 400 910
+                   Q 390 935 410 940
+                   L 460 940
+                   Q 480 935 478 920
+                   C 485 860 500 790 508 730
+                   L 512 700
+                   L 516 730
+                   C 524 790 539 860 546 920
+                   Q 544 935 564 940
+                   L 614 940
+                   Q 634 935 624 910
+                   L 614 880
+                   C 604 830 592 770 589 720
+                   Q 606 670 616 615
+                   Q 629 555 626 490
+                   Q 629 460 624 430
+                   Q 594 425 566 430"
+                  fill="none" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- Armpit detail lines (internal, like reference) -->
+            <path d="M 458 430 Q 445 450 430 470"
+                  fill="none" stroke="#202038" stroke-width="10"
+                  stroke-linecap="round" opacity="0.6"/>
+            <path d="M 566 430 Q 579 450 594 470"
+                  fill="none" stroke="#202038" stroke-width="10"
+                  stroke-linecap="round" opacity="0.6"/>
+
+            <!-- HEAD -->
+            <circle cx="512" cy="250" r="115"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection -->
+            <path d="M 545 155 A 85 85 0 0 1 600 210"
+                  stroke="white" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.4"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="485" cy="255" rx="13" ry="16" fill="#202038"/>
+            <ellipse cx="539" cy="255" rx="13" ry="16" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="482" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="536" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

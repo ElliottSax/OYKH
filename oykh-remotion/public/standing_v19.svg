@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v19: Based on golden v17, but with MITTEN hands and FOOT-shaped feet -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <!-- MASKS -->
+            <mask id="armMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <path d="M 447.6 346.1
+                    Q 456.9 364.8 439.4 397.6
+                    Q 438.7 516.5 441.8 608.3
+                    Q 461.8 643.4 512.0 650.4
+                    Q 562.2 643.4 582.2 608.3
+                    Q 585.3 516.5 584.6 397.6
+                    Q 567.1 364.8 576.4 346.1
+                    Q 512.0 336.7 447.6 346.1
+                    Z" fill="black"/>
+            </mask>
+            <mask id="bodyOutlineMask">
+                <rect x="0" y="0" width="2000" height="2000" fill="white"/>
+                <!-- Left arm with mitten -->
+                <path d="M 428.4 392.8
+                   C 422.5 414.8 397.6 518.4 391.7 540.4
+                   C 383 552 380 575 395 590
+                   Q 407 598 420 590
+                   C 432 578 430 555 422.5 548.7
+                   C 428.4 526.6 458.6 424.5 464.6 402.5
+                   A 18.7 18.7 0 0 0 428.4 392.8
+                   Z" fill="black"/>
+                <!-- Right arm with mitten -->
+                <path d="M 595.6 392.8
+                   C 601.5 414.8 626.4 518.4 632.3 540.4
+                   C 641 552 644 575 629 590
+                   Q 617 598 604 590
+                   C 592 578 594 555 601.5 548.7
+                   C 595.6 526.6 565.4 424.5 559.4 402.5
+                   A 18.7 18.7 0 0 1 595.6 392.8
+                   Z" fill="black"/>
+            </mask>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9.36"/>
+                <feOffset dx="7" dy="11.7" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <linearGradient id="bodyGrad" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="40%" stop-color="#FAFAFA"/>
+                <stop offset="75%" stop-color="#E8E8EE"/>
+                <stop offset="100%" stop-color="#D8D8E2"/>
+            </linearGradient>
+
+            <radialGradient id="highlight" cx="70%" cy="25%" r="80%" fx="75%" fy="20%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="35%" stop-color="#FAFAFA"/>
+                <stop offset="65%" stop-color="#ECECF2"/>
+                <stop offset="100%" stop-color="#D8D8E2"/>
+            </radialGradient>
+
+            <clipPath id="bodyClip">
+                <path d="M 447.6 346.1
+                    Q 456.9 364.8 439.4 397.6
+                    Q 438.7 516.5 441.8 608.3
+                    Q 461.8 643.4 512.0 650.4
+                    Q 562.2 643.4 582.2 608.3
+                    Q 585.3 516.5 584.6 397.6
+                    Q 567.1 364.8 576.4 346.1
+                    Q 512.0 336.7 447.6 346.1
+                    Z"/>
+            </clipPath>
+            <clipPath id="headClip">
+                <circle cx="512.0" cy="263.35" r="121.71"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512.0" cy="851.68" rx="145.12" ry="23.41" fill="rgba(30, 30, 50, 0.6)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- LEGS with FOOT-SHAPED feet -->
+            <!-- Left Leg -->
+            <path d="M 465.2 625.6
+                     Q 488.3 631.5 488.3 643.0
+                     C 485.5 674.3 482.5 701.0 479.8 732.2
+                     C 476.5 770.3 467.5 802.5 464.2 840.6
+                     Q 455 865 435 875
+                     L 420 875
+                     Q 405 865 415 840
+                     C 420 810 428 780 431.5 750
+                     C 434.9 720 437.7 690 442.1 639.0
+                     Q 442.1 627.4 465.2 625.6
+                     Z"
+                  fill="url(#bodyGrad)" stroke="#202038" stroke-width="12.87"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- Right Leg -->
+            <path d="M 558.8 625.6
+                     Q 581.9 627.4 581.9 639.0
+                     C 584.6 670.2 589 720 592 750
+                     C 596 780 604 810 609 840
+                     Q 619 865 604 875
+                     L 589 875
+                     Q 569 865 559.8 840.6
+                     C 556.5 802.5 547.5 770.3 544.2 732.2
+                     C 541.5 701.0 538.5 674.3 535.7 643.0
+                     Q 535.7 631.5 558.8 625.6
+                     Z"
+                  fill="url(#bodyGrad)" stroke="#202038" stroke-width="12.87"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- ARMS with MITTEN hands - fill only -->
+            <!-- Left Arm -->
+            <path d="M 428.4 392.8
+                   C 422.5 414.8 397.6 518.4 391.7 540.4
+                   C 383 552 380 575 395 590
+                   Q 407 598 420 590
+                   C 432 578 430 555 422.5 548.7
+                   C 428.4 526.6 458.6 424.5 464.6 402.5
+                   A 18.7 18.7 0 0 0 428.4 392.8
+                   Z" fill="url(#bodyGrad)" stroke="none"/>
+
+            <!-- Right Arm -->
+            <path d="M 595.6 392.8
+                   C 601.5 414.8 626.4 518.4 632.3 540.4
+                   C 641 552 644 575 629 590
+                   Q 617 598 604 590
+                   C 592 578 594 555 601.5 548.7
+                   C 595.6 526.6 565.4 424.5 559.4 402.5
+                   A 18.7 18.7 0 0 1 595.6 392.8
+                   Z" fill="url(#bodyGrad)" stroke="none"/>
+
+            <!-- Arm outlines (masked) -->
+            <g mask="url(#armMask)">
+                <path d="M 428.4 392.8
+                       C 422.5 414.8 397.6 518.4 391.7 540.4
+                       C 383 552 380 575 395 590
+                       Q 407 598 420 590
+                       C 432 578 430 555 422.5 548.7
+                       C 428.4 526.6 458.6 424.5 464.6 402.5
+                       A 18.7 18.7 0 0 0 428.4 392.8
+                       Z" fill="none" stroke="#202038" stroke-width="12.87"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+                <path d="M 595.6 392.8
+                       C 601.5 414.8 626.4 518.4 632.3 540.4
+                       C 641 552 644 575 629 590
+                       Q 617 598 604 590
+                       C 592 578 594 555 601.5 548.7
+                       C 595.6 526.6 565.4 424.5 559.4 402.5
+                       A 18.7 18.7 0 0 1 595.6 392.8
+                       Z" fill="none" stroke="#202038" stroke-width="12.87"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <!-- BODY -->
+            <path d="M 447.6 346.1
+                    Q 456.9 364.8 439.4 397.6
+                    Q 438.7 516.5 441.8 608.3
+                    Q 461.8 643.4 512.0 650.4
+                    Q 562.2 643.4 582.2 608.3
+                    Q 585.3 516.5 584.6 397.6
+                    Q 567.1 364.8 576.4 346.1
+                    Q 512.0 336.7 447.6 346.1
+                    Z" fill="url(#highlight)" stroke="none"/>
+
+            <ellipse cx="512.0" cy="631.66" rx="56.17" ry="18.72"
+                     fill="#606080" opacity="0.08" clip-path="url(#bodyClip)"/>
+
+            <g mask="url(#bodyOutlineMask)">
+                <path d="M 447.6 346.1
+                        Q 456.9 364.8 439.4 397.6
+                        Q 438.7 516.5 441.8 608.3
+                        Q 461.8 643.4 512.0 650.4
+                        Q 562.2 643.4 582.2 608.3
+                        Q 585.3 516.5 584.6 397.6
+                        Q 567.1 364.8 576.4 346.1
+                        Q 512.0 336.7 447.6 346.1
+                        Z" fill="none" stroke="#202038" stroke-width="12.87"
+                      stroke-linejoin="round" stroke-linecap="round"/>
+            </g>
+
+            <path d="M 548.28 388.24 Q 558.44 416.33 552.63 444.42"
+                  stroke="#D0D0E0" stroke-width="16.38" fill="none"
+                  stroke-linecap="round" opacity="0.7"
+                  clip-path="url(#bodyClip)"/>
+
+            <!-- HEAD -->
+            <circle cx="512.0" cy="263.35" r="121.71"
+                    fill="url(#highlight)" stroke="#202038" stroke-width="12.87"/>
+
+            <path d="M 524.17 175.72 A 94.93 94.93 0 0 1 582.59 214.67"
+                  stroke="#D0D0E0" stroke-width="18.72" fill="none"
+                  stroke-linecap="round" opacity="0.75"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="493.28" cy="263.35" rx="11.94" ry="15.45" fill="#202038"/>
+            <ellipse cx="530.72" cy="263.35" rx="11.94" ry="15.45" fill="#202038"/>
+
+            <circle cx="491.17" cy="258.43" r="3.51" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="528.62" cy="258.43" r="3.51" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9a825"/>
+      <stop offset="50%" style="stop-color:#29b6f6"/>
+      <stop offset="100%" style="stop-color:#ab47bc"/>
+    </linearGradient>
+
+    <!-- CLIP PATHS - exact shapes from original -->
+    <clipPath id="bodyHeadClip">
+      <path d="M 960 377.5 C 1073.75 377.5 1073.75 526.25 1027.5 590 L 1030 640 Q 1030 677.5 960 677.5 Q 890 677.5 890 640 L 892.5 590 C 846.25 526.25 846.25 377.5 960 377.5 Z"/>
+    </clipPath>
+    <clipPath id="leftLegClip">
+      <path d="M 946.44 646.51 Q 921.29 582.51 896.13 518.50 L 869.82 528.08 Q 891.69 593.28 913.56 658.49 Z"/>
+      <ellipse cx="882.97" cy="523.29" rx="18.2" ry="15.4"/>
+    </clipPath>
+    <clipPath id="rightLegClip">
+      <path d="M 1006.44 658.49 Q 1028.31 593.28 1050.18 528.08 L 1023.87 518.50 Q 998.71 582.51 973.56 646.51 Z"/>
+      <ellipse cx="1037.03" cy="523.29" rx="18.2" ry="15.4"/>
+    </clipPath>
+    <clipPath id="leftArmClip">
+      <path d="M 905.13 563.40 Q 851.25 546.99 797.88 529.16 L 790.69 548.89 Q 843.04 569.54 894.87 591.60 Z"/>
+      <ellipse cx="794.28" cy="539.02" rx="12.6" ry="12.6"/>
+    </clipPath>
+    <clipPath id="rightArmClip">
+      <path d="M 1025.13 591.60 Q 1076.96 569.54 1129.31 548.89 L 1122.12 529.16 Q 1068.75 546.99 1014.87 563.40 Z"/>
+      <ellipse cx="1125.72" cy="539.02" rx="12.6" ry="12.6"/>
+    </clipPath>
+    <clipPath id="leftHandClip">
+      <ellipse cx="794.28" cy="539.02" rx="12.6" ry="12.6"/>
+    </clipPath>
+    <clipPath id="rightHandClip">
+      <ellipse cx="1125.72" cy="539.02" rx="12.6" ry="12.6"/>
+    </clipPath>
+    <clipPath id="leftFootClip">
+      <ellipse cx="882.97" cy="523.29" rx="18.2" ry="15.4"/>
+    </clipPath>
+    <clipPath id="rightFootClip">
+      <ellipse cx="1037.03" cy="523.29" rx="18.2" ry="15.4"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+  <!-- Ground shadow -->
+  <ellipse cx="960" cy="852.5" rx="150" ry="37.5" fill="rgba(20,20,60,0.3)"/>
+
+  <!-- CHARACTER -->
+  <g id="character">
+
+    <!-- ===== LEFT LEG ===== -->
+    <g id="leftLeg">
+      <path d="M 946.44 646.51 Q 921.29 582.51 896.13 518.50 L 869.82 528.08 Q 891.69 593.28 913.56 658.49 Z"
+            fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10" stroke-linejoin="round"/>
+      <ellipse cx="882.97" cy="523.29" rx="18.2" ry="15.4" fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10"/>
+
+      <!-- Shadow crescent (two overlapping ellipses technique) -->
+      <g clip-path="url(#leftLegClip)">
+        <ellipse cx="925" cy="580" rx="35" ry="70" fill="#D8DCE8"/>
+        <ellipse cx="912" cy="580" rx="30" ry="65" fill="#FFFFFF"/>
+      </g>
+      <!-- Foot shadow -->
+      <g clip-path="url(#leftFootClip)">
+        <ellipse cx="890" cy="523" rx="15" ry="12" fill="#D8DCE8"/>
+        <ellipse cx="885" cy="523" rx="12" ry="10" fill="#FFFFFF"/>
+      </g>
+      <!-- Highlight -->
+      <g clip-path="url(#leftLegClip)">
+        <ellipse cx="878" cy="560" rx="8" ry="25" fill="#FFFFFF" opacity="0.5" transform="rotate(-15 878 560)"/>
+      </g>
+      <!-- Foot highlight -->
+      <ellipse cx="875" cy="517" rx="5" ry="3" fill="#FFFFFF" opacity="0.6" clip-path="url(#leftFootClip)"/>
+    </g>
+
+    <!-- ===== RIGHT LEG ===== -->
+    <g id="rightLeg">
+      <path d="M 1006.44 658.49 Q 1028.31 593.28 1050.18 528.08 L 1023.87 518.50 Q 998.71 582.51 973.56 646.51 Z"
+            fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10" stroke-linejoin="round"/>
+      <ellipse cx="1037.03" cy="523.29" rx="18.2" ry="15.4" fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10"/>
+
+      <!-- Shadow crescent -->
+      <g clip-path="url(#rightLegClip)">
+        <ellipse cx="1010" cy="580" rx="35" ry="70" fill="#D8DCE8"/>
+        <ellipse cx="997" cy="580" rx="30" ry="65" fill="#FFFFFF"/>
+      </g>
+      <!-- Foot shadow -->
+      <g clip-path="url(#rightFootClip)">
+        <ellipse cx="1045" cy="523" rx="15" ry="12" fill="#D8DCE8"/>
+        <ellipse cx="1040" cy="523" rx="12" ry="10" fill="#FFFFFF"/>
+      </g>
+      <!-- Highlight -->
+      <g clip-path="url(#rightLegClip)">
+        <ellipse cx="985" cy="570" rx="8" ry="25" fill="#FFFFFF" opacity="0.5" transform="rotate(15 985 570)"/>
+      </g>
+      <!-- Foot highlight -->
+      <ellipse cx="1030" cy="517" rx="5" ry="3" fill="#FFFFFF" opacity="0.6" clip-path="url(#rightFootClip)"/>
+    </g>
+
+    <!-- ===== BODY + HEAD ===== -->
+    <g id="bodyHead">
+      <path d="M 960 377.5 C 1073.75 377.5 1073.75 526.25 1027.5 590 L 1030 640 Q 1030 677.5 960 677.5 Q 890 677.5 890 640 L 892.5 590 C 846.25 526.25 846.25 377.5 960 377.5 Z"
+            fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10" stroke-linejoin="round"/>
+
+      <!-- HEAD shadow crescent (overlapping ellipses) -->
+      <g clip-path="url(#bodyHeadClip)">
+        <ellipse cx="1000" cy="450" rx="70" ry="85" fill="#D8DCE8"/>
+        <ellipse cx="975" cy="450" rx="65" ry="80" fill="#FFFFFF"/>
+      </g>
+
+      <!-- HEAD highlight crescent (top-left) -->
+      <g clip-path="url(#bodyHeadClip)">
+        <ellipse cx="920" cy="420" rx="50" ry="60" fill="#FFFFFF"/>
+        <ellipse cx="935" cy="435" rx="48" ry="58" fill="none" stroke="#FFFFFF" stroke-width="0"/>
+      </g>
+      <ellipse cx="918" cy="408" rx="18" ry="10" fill="#FFFFFF" opacity="0.7" transform="rotate(-25 918 408)" clip-path="url(#bodyHeadClip)"/>
+      <ellipse cx="928" cy="425" rx="8" ry="5" fill="#FFFFFF" opacity="0.5" transform="rotate(-20 928 425)" clip-path="url(#bodyHeadClip)"/>
+
+      <!-- TORSO shadow crescent -->
+      <g clip-path="url(#bodyHeadClip)">
+        <ellipse cx="1010" cy="630" rx="50" ry="55" fill="#D8DCE8"/>
+        <ellipse cx="990" cy="630" rx="45" ry="50" fill="#FFFFFF"/>
+      </g>
+
+      <!-- TORSO highlight -->
+      <ellipse cx="908" cy="620" rx="12" ry="20" fill="#FFFFFF" opacity="0.4" transform="rotate(-10 908 620)" clip-path="url(#bodyHeadClip)"/>
+
+      <!-- Eyes -->
+      <ellipse cx="930" cy="460" rx="12.5" ry="15" fill="#1a1a3e"/>
+      <ellipse cx="990" cy="460" rx="12.5" ry="15" fill="#1a1a3e"/>
+      <!-- Eye highlights -->
+      <circle cx="926" cy="455" r="4" fill="#FFFFFF" opacity="0.9"/>
+      <circle cx="986" cy="455" r="4" fill="#FFFFFF" opacity="0.9"/>
+    </g>
+
+    <!-- ===== LEFT ARM ===== -->
+    <g id="leftArm">
+      <path d="M 905.13 563.40 Q 851.25 546.99 797.88 529.16 L 790.69 548.89 Q 843.04 569.54 894.87 591.60 Z"
+            fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10" stroke-linejoin="round"/>
+      <ellipse cx="794.28" cy="539.02" rx="12.6" ry="12.6" fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10"/>
+
+      <!-- Arm shadow -->
+      <g clip-path="url(#leftArmClip)">
+        <ellipse cx="845" cy="565" rx="50" ry="18" fill="#D8DCE8" transform="rotate(-12 845 565)"/>
+        <ellipse cx="845" cy="558" rx="48" ry="15" fill="#FFFFFF" transform="rotate(-12 845 558)"/>
+      </g>
+      <!-- Arm highlight -->
+      <ellipse cx="850" cy="545" rx="30" ry="6" fill="#FFFFFF" opacity="0.5" transform="rotate(-12 850 545)" clip-path="url(#leftArmClip)"/>
+
+      <!-- Hand shadow -->
+      <g clip-path="url(#leftHandClip)">
+        <ellipse cx="800" cy="542" rx="10" ry="10" fill="#D8DCE8"/>
+        <ellipse cx="796" cy="540" rx="8" ry="8" fill="#FFFFFF"/>
+      </g>
+      <!-- Hand highlight -->
+      <ellipse cx="788" cy="533" rx="4" ry="3" fill="#FFFFFF" opacity="0.6" clip-path="url(#leftHandClip)"/>
+    </g>
+
+    <!-- ===== RIGHT ARM ===== -->
+    <g id="rightArm">
+      <path d="M 1025.13 591.60 Q 1076.96 569.54 1129.31 548.89 L 1122.12 529.16 Q 1068.75 546.99 1014.87 563.40 Z"
+            fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10" stroke-linejoin="round"/>
+      <ellipse cx="1125.72" cy="539.02" rx="12.6" ry="12.6" fill="#FFFFFF" stroke="#1a1a3e" stroke-width="10"/>
+
+      <!-- Arm shadow -->
+      <g clip-path="url(#rightArmClip)">
+        <ellipse cx="1075" cy="565" rx="50" ry="18" fill="#D8DCE8" transform="rotate(12 1075 565)"/>
+        <ellipse cx="1075" cy="558" rx="48" ry="15" fill="#FFFFFF" transform="rotate(12 1075 558)"/>
+      </g>
+      <!-- Arm highlight -->
+      <ellipse cx="1070" cy="545" rx="30" ry="6" fill="#FFFFFF" opacity="0.5" transform="rotate(12 1070 545)" clip-path="url(#rightArmClip)"/>
+
+      <!-- Hand shadow -->
+      <g clip-path="url(#rightHandClip)">
+        <ellipse cx="1132" cy="542" rx="10" ry="10" fill="#D8DCE8"/>
+        <ellipse cx="1128" cy="540" rx="8" ry="8" fill="#FFFFFF"/>
+      </g>
+      <!-- Hand highlight -->
+      <ellipse cx="1120" cy="533" rx="4" ry="3" fill="#FFFFFF" opacity="0.6" clip-path="url(#rightHandClip)"/>
+    </g>
+
+  </g>
+</svg>

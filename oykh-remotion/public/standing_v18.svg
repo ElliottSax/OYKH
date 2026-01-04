@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v18: MINIMAL approach - single curves, flat color, no gradients -->
+    <!-- Goal: Isolate shape issues from shading issues -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+            <feOffset dx="5" dy="8" result="shadow"/>
+            <feFlood flood-color="#1a1a2e" flood-opacity="0.3"/>
+            <feComposite in2="shadow" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- Simple masks -->
+        <mask id="armMask">
+            <rect width="2000" height="2000" fill="white"/>
+            <ellipse cx="960" cy="480" rx="95" ry="150" fill="black"/>
+        </mask>
+        <mask id="bodyMask">
+            <rect width="2000" height="2000" fill="white"/>
+            <ellipse cx="850" cy="520" rx="35" ry="120" transform="rotate(-15 850 520)" fill="black"/>
+            <ellipse cx="1070" cy="520" rx="35" ry="120" transform="rotate(15 1070 520)" fill="black"/>
+        </mask>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <!-- Ground shadow -->
+    <ellipse cx="960" cy="860" rx="120" ry="18" fill="rgba(30,30,50,0.4)"/>
+
+    <g filter="url(#shadow)">
+
+        <!-- LEGS: Simple ellipses -->
+        <ellipse cx="920" cy="720" rx="32" ry="115" fill="#F8F8F8" stroke="#202038" stroke-width="12"/>
+        <ellipse cx="1000" cy="720" rx="32" ry="115" fill="#F8F8F8" stroke="#202038" stroke-width="12"/>
+
+        <!-- FEET: Rounded ends -->
+        <ellipse cx="920" cy="835" rx="38" ry="22" fill="#F8F8F8" stroke="#202038" stroke-width="12"/>
+        <ellipse cx="1000" cy="835" rx="38" ry="22" fill="#F8F8F8" stroke="#202038" stroke-width="12"/>
+
+        <!-- ARMS: Rotated ellipses, FILL only -->
+        <ellipse cx="850" cy="520" rx="30" ry="110" transform="rotate(-15 850 520)" fill="#F8F8F8"/>
+        <ellipse cx="1070" cy="520" rx="30" ry="110" transform="rotate(15 1070 520)" fill="#F8F8F8"/>
+
+        <!-- ARM strokes (masked by body) -->
+        <g mask="url(#armMask)">
+            <ellipse cx="850" cy="520" rx="30" ry="110" transform="rotate(-15 850 520)" fill="none" stroke="#202038" stroke-width="12"/>
+            <ellipse cx="1070" cy="520" rx="30" ry="110" transform="rotate(15 1070 520)" fill="none" stroke="#202038" stroke-width="12"/>
+        </g>
+
+        <!-- HANDS: Simple ellipses at arm ends -->
+        <ellipse cx="815" cy="615" rx="28" ry="32" fill="#F8F8F8" stroke="#202038" stroke-width="12"/>
+        <ellipse cx="1105" cy="615" rx="28" ry="32" fill="#F8F8F8" stroke="#202038" stroke-width="12"/>
+
+        <!-- BODY: Simple ellipse, FILL only -->
+        <ellipse cx="960" cy="480" rx="95" ry="150" fill="#F8F8F8"/>
+
+        <!-- BODY stroke (masked by arms) -->
+        <g mask="url(#bodyMask)">
+            <ellipse cx="960" cy="480" rx="95" ry="150" fill="none" stroke="#202038" stroke-width="12"/>
+        </g>
+
+        <!-- HEAD -->
+        <circle cx="960" cy="255" r="95" fill="#F8F8F8" stroke="#202038" stroke-width="12"/>
+
+        <!-- EYES -->
+        <ellipse cx="935" cy="260" rx="11" ry="14" fill="#202038"/>
+        <ellipse cx="985" cy="260" rx="11" ry="14" fill="#202038"/>
+
+        <!-- Eye highlights -->
+        <circle cx="932" cy="255" r="3" fill="white"/>
+        <circle cx="982" cy="255" r="3" fill="white"/>
+
+    </g>
+</svg>

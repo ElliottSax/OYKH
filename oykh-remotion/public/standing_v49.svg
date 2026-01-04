@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+    <!-- v49: Based on v47, arms extended outward ~20px
+         - Right arm outer edge: x values +20px
+         - Left arm outer edge: x values -20px -->
+
+    <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#45b8d1"/>
+            <stop offset="30%" stop-color="#6a6acd"/>
+            <stop offset="60%" stop-color="#c080a8"/>
+            <stop offset="100%" stop-color="#e8a060"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+
+    <g transform="translate(420, 0) scale(1.0546875)">
+
+        <defs>
+            <radialGradient id="bodyFill" cx="50%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#FFFFFF"/>
+                <stop offset="50%" stop-color="#F5F5FA"/>
+                <stop offset="100%" stop-color="#E8E8F0"/>
+            </radialGradient>
+
+            <filter id="dropShadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="9"/>
+                <feOffset dx="6" dy="10" result="shadow"/>
+                <feFlood flood-color="#1a1a2e" flood-opacity="0.35"/>
+                <feComposite in2="shadow" operator="in"/>
+                <feMerge>
+                    <feMergeNode/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+
+            <clipPath id="headClip">
+                <circle cx="512" cy="250" r="115"/>
+            </clipPath>
+        </defs>
+
+        <!-- Ground Shadow -->
+        <ellipse cx="512" cy="940" rx="180" ry="25" fill="rgba(30, 30, 50, 0.5)"/>
+
+        <g filter="url(#dropShadow)">
+
+            <!-- CHALK OUTLINE - arms extended outward ~20px -->
+            <path d="
+                M 482 365
+                Q 512 355 542 365
+                L 542 380
+                Q 585 388 630 410
+                C 655 435 678 510 685 565
+                Q 692 610 675 635
+                Q 660 655 640 650
+                Q 620 645 612 625
+                C 606 600 610 565 615 530
+                L 610 500
+                Q 592 600 598 700
+                C 605 760 614 825 624 875
+                Q 634 910 618 925
+                L 565 930
+                Q 540 925 535 900
+                C 525 850 518 790 514 730
+                L 512 700
+                L 510 730
+                C 506 790 499 850 489 900
+                Q 484 925 459 930
+                L 406 925
+                Q 390 910 400 875
+                C 410 825 419 760 426 700
+                Q 432 600 414 500
+                L 409 530
+                C 414 565 418 600 412 625
+                Q 404 645 384 650
+                Q 364 655 349 635
+                Q 332 610 339 565
+                C 346 510 369 435 394 410
+                Q 439 388 482 380
+                L 482 365
+                Z"
+                  fill="url(#bodyFill)" stroke="#202038" stroke-width="12"
+                  stroke-linejoin="round" stroke-linecap="round"/>
+
+            <!-- HEAD -->
+            <circle cx="512" cy="250" r="115"
+                    fill="url(#bodyFill)" stroke="#202038" stroke-width="12"/>
+
+            <!-- Head reflection - LIGHT GRAY, moved 10px toward center -->
+            <path d="M 535 155 A 85 85 0 0 1 590 210"
+                  stroke="#D0D0D8" stroke-width="16" fill="none"
+                  stroke-linecap="round" opacity="0.5"
+                  clip-path="url(#headClip)"/>
+
+            <!-- Eyes -->
+            <ellipse cx="485" cy="255" rx="13" ry="16" fill="#202038"/>
+            <ellipse cx="539" cy="255" rx="13" ry="16" fill="#202038"/>
+
+            <!-- Eye highlights -->
+            <circle cx="482" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+            <circle cx="536" cy="250" r="4" fill="#FFFFFF" opacity="0.95"/>
+
+        </g>
+    </g>
+</svg>
