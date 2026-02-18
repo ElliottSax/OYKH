@@ -1,108 +1,164 @@
 
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { AppStep, Scene } from './types';
-import { generateScript, generateSceneImage, generateSceneVideo, generateSceneAudio } from './services/gemini';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { AppStep, Scene, ProductionVibe } from './types.ts';
+import { generateScript, generateSceneImage, generateSceneAudio, fetchSuggestions, fetchHooks, MUSIC_FOR_VIBE } from './services/gemini.ts';
 
-const SUGGESTED_TOPICS = [
-  "Quantum physics is child's play... once you know how",
-  "Trading stocks is a snap... once you know how",
-  "Speed reading is effortless... once you know how",
-  "Lucid dreaming is second nature... once you know how",
-  "Building a cabin is straightforward... once you know how",
-  "Mastering AI is a breeze... once you know how",
-  "Reading body language is a cinch... once you know how",
-  "Winning any debate is a snap... once you know how",
-  "Surviving the wild is basic... once you know how",
-  "Writing a bestseller is intuitive... once you know how",
-  "Starting a startup is a snap... once you know how",
-  "Baking sourdough is a breeze... once you know how",
-  "Public speaking is child's play... once you know how",
-  "Parallel parking is a cinch... once you know how",
-  "Mastering chess is second nature... once you know how",
-  "Tying a bow tie is a snap... once you know how"
+const PRODUCTION_LOGS = [
+  "Baking global illumination...",
+  "Simulating character physics...",
+  "Optimizing cel-shaded density...",
+  "Calibrating neural vocals...",
+  "Generating kinetic paths...",
+  "Mastering audio buffers..."
 ];
 
-const TheaterPlayer: React.FC<{ scenes: Scene[] }> = ({ scenes }) => {
+const SeamlessPlayer: React.FC<{ scenes: Scene[], vibe: ProductionVibe }> = ({ scenes, vibe }) => {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
-
+  const bgMusicRef = useRef<HTMLAudioElement>(null);
+  
   const currentScene = scenes[currentIdx];
 
-  const handlePlay = () => {
-    setIsPlaying(true);
-    videoRef.current?.play();
-    audioRef.current?.play();
-  };
-
-  const handleEnd = () => {
+  const handleEnd = useCallback(() => {
     if (currentIdx < scenes.length - 1) {
-      setCurrentIdx(currentIdx + 1);
+      setCurrentIdx(prev => prev + 1);
     } else {
       setIsPlaying(false);
       setCurrentIdx(0);
+      if (bgMusicRef.current) {
+        bgMusicRef.current.pause();
+        bgMusicRef.current.currentTime = 0;
+      }
     }
-  };
+  }, [currentIdx, scenes.length]);
+
+  const togglePlay = useCallback(() => {
+    if (isPlaying) {
+      audioRef.current?.pause();
+      bgMusicRef.current?.pause();
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(true);
+      // Attempt playback
+      const playAudio = async () => {
+        try {
+          if (audioRef.current) await audioRef.current.play();
+          if (bgMusicRef.current) {
+            bgMusicRef.current.volume = 0.15;
+            await bgMusicRef.current.play();
+          }
+        } catch (e) {
+          console.warn("Autoplay blocked or failed:", e);
+          setIsPlaying(false); // Revert to paused state if blocked
+        }
+      };
+      playAudio();
+    }
+  }, [isPlaying]);
 
   useEffect(() => {
-    if (isPlaying) {
-      // Sync refs when scene changes
-      videoRef.current?.load();
-      audioRef.current?.load();
-      videoRef.current?.play();
-      audioRef.current?.play();
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlay();
+      }
+      if (e.code === 'Escape') {
+        setIsPlaying(false);
+        setCurrentIdx(0);
+        audioRef.current?.pause();
+        bgMusicRef.current?.pause();
+      }
+    };
+    window.addEventListener('keydown', handleKeydown);
+    return () => window.removeEventListener('keydown', handleKeydown);
+  }, [togglePlay]);
+
+  // Sync audio track when slide changes automatically
+  useEffect(() => {
+    if (isPlaying && audioRef.current) {
+      audioRef.current.play().catch(() => {});
     }
   }, [currentIdx, isPlaying]);
 
+  if (!currentScene) return <div className="p-10 text-center font-bold text-red-500">Error: Scene data missing.</div>;
+
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      <div className="relative aspect-video bg-black rounded-[48px] overflow-hidden border-[12px] border-black shadow-[0_64px_128px_-24px_rgba(0,0,0,0.5)] group">
-        <video 
-          ref={videoRef}
-          src={currentScene.videoUrl}
-          className="w-full h-full object-cover"
-          onEnded={handleEnd}
-          muted={true}
-        />
-        <audio 
-          ref={audioRef}
-          src={currentScene.audioUrl}
-        />
+    <div className="w-full max-w-6xl mx-auto flex flex-col gap-12">
+      <div 
+        onClick={togglePlay}
+        className="relative aspect-video bg-black rounded-[60px] overflow-hidden border-[16px] border-black shadow-[0_100px_200px_-50px_rgba(0,0,0,0.9)] ring-1 ring-white/10 group cursor-pointer select-none"
+      >
+        {/* Grain overlay */}
+        <div className="absolute inset-0 z-40 pointer-events-none opacity-[0.05] mix-blend-overlay">
+          <div className="absolute inset-0 animate-[noise_0.2s_infinite_steps(1)] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+        </div>
+
+        {/* Visuals */}
+        <div className="absolute inset-0 overflow-hidden bg-[#111]">
+          {scenes.map((scene, i) => (
+            <div key={i} className={`absolute inset-0 transition-opacity duration-300 ${i === currentIdx ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+              {scene.imageData ? (
+                <img 
+                  src={scene.imageData}
+                  className={`w-full h-full object-cover transition-transform duration-[2000ms] ${isPlaying && i === currentIdx ? 'scale-110' : 'scale-100'}`}
+                  alt={`Scene ${i+1}`}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gray-900 text-gray-700 font-black text-6xl">
+                  RENDERING...
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
         
+        {/* Audio Tracks */}
+        <audio ref={audioRef} src={currentScene.audioUrl} onEnded={handleEnd} />
+        <audio ref={bgMusicRef} src={MUSIC_FOR_VIBE(vibe)} loop />
+
+        {/* Typography Overlay */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none p-10">
+          <h2 
+            key={`text-${currentIdx}`} 
+            className="text-[6rem] md:text-[10rem] font-black text-white uppercase tracking-tighter leading-none italic animate-[impact_0.4s_cubic-bezier(0.175,0.885,0.32,1.275)_forwards] drop-shadow-[0_20px_60px_rgba(0,0,0,1)] text-center"
+            style={{ WebkitTextStroke: '4px black' }}
+          >
+            {currentScene.screenText}
+          </h2>
+          
+          <div className="absolute bottom-32 px-20 text-center w-full">
+             <p key={`sub-${currentIdx}`} className="inline-block text-white bg-black/80 px-8 py-4 rounded-3xl border-2 border-white/20 backdrop-blur-md text-2xl font-bold tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-500 shadow-2xl">
+               {currentScene.script}
+             </p>
+          </div>
+        </div>
+
+        {/* Play Button Overlay */}
         {!isPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm transition-all">
-            <button 
-              onClick={handlePlay}
-              className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all group"
-            >
-              <svg className="w-12 h-12 text-white ml-2" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </button>
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-2xl z-40 animate-in fade-in duration-500">
+            <div className="w-56 h-56 bg-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform active:scale-95">
+              <svg className="w-28 h-28 text-black ml-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div className="mt-12 text-white font-black uppercase tracking-[1em] text-xs animate-pulse">Click or Space to Play</div>
           </div>
         )}
 
-        <div className="absolute top-8 left-8 flex items-center gap-4">
-          <div className="px-6 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white font-black text-xs uppercase tracking-[0.2em]">
-            Scene {String(currentIdx + 1).padStart(2, '0')} / {scenes.length}
+        {/* Progress Bar */}
+        <div className="absolute bottom-12 left-12 right-12 flex items-center gap-10 z-50">
+          <div className="flex-1 h-3 bg-white/5 rounded-full overflow-hidden backdrop-blur-md border border-white/10">
+            <div className="h-full bg-blue-500 transition-all duration-300" style={{ width: `${((currentIdx + 1) / scenes.length) * 100}%` }}></div>
           </div>
-          <div className="px-6 py-2 bg-blue-600 rounded-full text-white font-black text-xs uppercase tracking-[0.2em]">
-            Premiere Mode
+          <div className="text-white font-black text-[10px] tracking-widest uppercase bg-black/60 px-6 py-2 rounded-xl border border-white/10 backdrop-blur-md tabular-nums">
+            {currentIdx + 1} / {scenes.length}
           </div>
-        </div>
-
-        <div className="absolute bottom-12 left-12 right-12">
-           <div className="mb-6 opacity-0 group-hover:opacity-100 transition-opacity">
-              <h4 className="text-white text-3xl font-black uppercase tracking-tighter drop-shadow-lg">{currentScene.title}</h4>
-              <p className="text-white/80 font-bold text-xl drop-shadow-lg italic">"{currentScene.script}"</p>
-           </div>
-           <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden">
-              <div 
-                className="h-full bg-blue-500 transition-all duration-300" 
-                style={{ width: `${((currentIdx + 1) / scenes.length) * 100}%` }}
-              />
-           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes impact { 0% { transform: scale(0.6) translateY(20px); opacity: 0; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
+        @keyframes noise { 0%, 100% { transform: translate(0,0) } 10% { transform: translate(-1%,-1%) } 20% { transform: translate(-2%,1%) } 50% { transform: translate(1%,-2%) } }
+      `}</style>
     </div>
   );
 };
@@ -110,250 +166,228 @@ const TheaterPlayer: React.FC<{ scenes: Scene[] }> = ({ scenes }) => {
 const App: React.FC = () => {
   const [step, setStep] = useState<AppStep>(AppStep.START);
   const [topic, setTopic] = useState('');
+  const [hooks, setHooks] = useState<string[]>([]);
+  const [selectedHook, setSelectedHook] = useState('');
+  const [vibe, setVibe] = useState<ProductionVibe>('minimal');
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [scenes, setScenes] = useState<Scene[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isKeyReady, setIsKeyReady] = useState(false);
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [logIdx, setLogIdx] = useState(0);
 
+  // Initialize data on mount
   useEffect(() => {
-    const checkKey = async () => {
-      // @ts-ignore
-      const hasKey = await window.aistudio.hasSelectedApiKey();
-      setIsKeyReady(hasKey);
-    };
-    checkKey();
+    fetchSuggestions()
+      .then(setSuggestions)
+      .catch((e) => {
+        console.warn("Falling back to internal suggestions", e);
+        setSuggestions(["Space Paradoxes", "The 1% Rule", "Brain Chemistry"]);
+      });
   }, []);
 
-  const handleOpenKeySelector = async () => {
-    // @ts-ignore
-    await window.aistudio.openSelectKey();
-    setIsKeyReady(true);
+  // Cycle production logs
+  useEffect(() => {
+    if (isProcessing) {
+      const interval = setInterval(() => setLogIdx(p => (p + 1) % PRODUCTION_LOGS.length), 2500);
+      return () => clearInterval(interval);
+    }
+  }, [isProcessing]);
+
+  // Clean up Blob URLs to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      scenes.forEach(s => { if(s.audioUrl?.startsWith('blob:')) URL.revokeObjectURL(s.audioUrl); });
+    };
+  }, [scenes]);
+
+  const initiateHookSearch = async (val?: string) => {
+    const t = val || topic;
+    if (!t) return;
+    setTopic(t);
+    setStep(AppStep.HOOK_SELECTION);
+    try {
+      const result = await fetchHooks(t);
+      setHooks(result.hooks || []);
+      setVibe((result.vibe as ProductionVibe) || 'minimal');
+    } catch (e) {
+      console.error("Hook failure:", e);
+      setHooks([`Secret of ${t}`, `Why ${t} matters`, `How ${t} works`]);
+    }
   };
 
-  const startGeneration = async () => {
-    if (!topic.trim()) return;
-    setError(null);
+  const startProduction = async (h: string) => {
+    setSelectedHook(h);
     setStep(AppStep.GENERATING_SCRIPT);
-
     try {
-      const generatedScenes = await generateScript(topic);
-      setScenes(generatedScenes);
+      const s = await generateScript(topic, h, vibe, isTestMode);
+      setScenes(s);
       setStep(AppStep.REFINING_SCENES);
-    } catch (err: any) {
-      setError(err.message || "Something went wrong.");
+    } catch (e) {
+      console.error("Script failure:", e);
       setStep(AppStep.START);
     }
   };
 
-  const processAllScenes = async () => {
-    if (!isKeyReady) {
-      await handleOpenKeySelector();
-    }
+  const runQuickDemo = async () => {
+    console.log("Quick Demo Triggered");
+    setIsTestMode(true);
+    setTopic("Rapid AI Growth");
+    setStep(AppStep.HOOK_SELECTION);
+    setHooks(["AI's Secret Speed", "Future in Minutes", "The Silicon Edge"]);
+    setVibe('cosmic');
+  };
+
+  const runRender = async () => {
+    setIsProcessing(true);
     
-    setError(null);
-    const updatedScenes = [...scenes];
-
-    for (let i = 0; i < updatedScenes.length; i++) {
+    // Process scenes sequentially to manage API rate limits and state updates cleanly
+    for (let i = 0; i < scenes.length; i++) {
       try {
-        updatedScenes[i].status = 'generating-image';
-        setScenes([...updatedScenes]);
-        const imageData = await generateSceneImage(updatedScenes[i]);
-        updatedScenes[i].imageData = imageData;
-
-        updatedScenes[i].status = 'generating-audio';
-        setScenes([...updatedScenes]);
-        const audioUrl = await generateSceneAudio(updatedScenes[i]);
-        updatedScenes[i].audioUrl = audioUrl;
-
-        updatedScenes[i].status = 'generating-video';
-        setScenes([...updatedScenes]);
-        const videoUrl = await generateSceneVideo(updatedScenes[i], imageData);
-        updatedScenes[i].videoUrl = videoUrl;
+        // 1. Generate Image
+        setScenes(prev => {
+          const next = [...prev];
+          next[i] = { ...next[i], status: 'generating-image' };
+          return next;
+        });
         
-        updatedScenes[i].status = 'completed';
-        setScenes([...updatedScenes]);
-      } catch (err: any) {
-        console.error(err);
-        updatedScenes[i].status = 'error';
-        setScenes([...updatedScenes]);
-        setError(`Production failed on scene ${i + 1}. Check your API key and try again.`);
-        return;
+        const imgData = await generateSceneImage(scenes[i], vibe, isTestMode);
+        
+        setScenes(prev => {
+          const next = [...prev];
+          next[i] = { ...next[i], imageData: imgData, status: 'generating-audio' };
+          return next;
+        });
+
+        // 2. Generate Audio
+        const audioUrl = await generateSceneAudio(scenes[i], isTestMode);
+
+        setScenes(prev => {
+          const next = [...prev];
+          next[i] = { ...next[i], audioUrl: audioUrl, status: 'completed' };
+          return next;
+        });
+
+      } catch (e) {
+        console.error(`Render scene ${i} error:`, e);
+        setScenes(prev => {
+          const next = [...prev];
+          next[i] = { ...next[i], status: 'error' };
+          return next;
+        });
+        // Stop processing on fatal error, or continue? We'll stop to avoid cascading failures.
+        setIsProcessing(false);
+        return; 
       }
     }
+    
+    setIsProcessing(false);
     setStep(AppStep.FINAL_VIDEO);
   };
 
-  const completionProgress = useMemo(() => {
-    if (scenes.length === 0) return 0;
-    const completed = scenes.filter(s => s.status === 'completed').length;
-    return Math.round((completed / scenes.length) * 100);
-  }, [scenes]);
-
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-black selection:bg-blue-600 selection:text-white">
-      <header className="fixed top-0 w-full p-6 flex justify-between items-center bg-white/90 backdrop-blur-2xl z-50 border-b-4 border-black">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center shadow-xl">
-            <div className="w-4 h-4 bg-white rounded-full"></div>
-          </div>
-          <div>
-            <h1 className="text-2xl font-black tracking-tighter uppercase leading-none">
-              Once You <span className="text-blue-600 italic">Know How</span>
-            </h1>
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Professional Studio Engine</p>
-          </div>
+    <div className="min-h-screen bg-[#FDFDFD] text-black font-sans selection:bg-blue-600 selection:text-white antialiased">
+      <header className="fixed top-0 w-full p-6 md:p-10 flex flex-col md:flex-row justify-between items-center bg-white/95 backdrop-blur-3xl z-50 border-b-[6px] border-black gap-6">
+        <div className="flex items-center gap-6 cursor-pointer" onClick={() => window.location.reload()}>
+          <div className="w-14 h-14 bg-black rounded-2xl flex items-center justify-center text-white font-black italic text-2xl rotate-3 shadow-[6px_6px_0_0_rgba(37,99,235,1)]">OY</div>
+          <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none">Studio <span className="text-blue-600 italic">Core</span></h1>
         </div>
-        <div className="flex items-center gap-6">
-          {step === AppStep.REFINING_SCENES && (
-            <div className="flex flex-col items-end">
-              <span className="text-xs font-black uppercase tracking-widest text-gray-400">Batch Processing</span>
-              <div className="w-48 h-3 bg-gray-100 rounded-full overflow-hidden border-2 border-black mt-1">
-                <div className="h-full bg-blue-600 transition-all duration-500" style={{ width: `${completionProgress}%` }}></div>
-              </div>
-            </div>
-          )}
-          {!isKeyReady && (
-            <button onClick={handleOpenKeySelector} className="px-5 py-2 bg-yellow-400 border-2 border-black rounded-xl font-black text-xs uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-1 hover:shadow-none transition-all">
-              Setup Key
-            </button>
-          )}
+        <div className="flex gap-4">
+          <button onClick={runQuickDemo} className="px-6 py-2 rounded-full bg-cyan-50 border-2 border-cyan-400 text-cyan-700 font-black uppercase text-[10px] tracking-widest shadow-[4px_4px_0_0_rgba(34,211,238,1)] hover:-translate-y-1 transition-all active:shadow-none">TEST RUN</button>
+          <button onClick={() => setIsTestMode(!isTestMode)} className={`px-6 py-2 rounded-full border-2 border-black font-black uppercase text-[10px] tracking-widest transition-all ${isTestMode ? 'bg-black text-white' : 'bg-white'}`}>{isTestMode ? 'MOCK MODE' : 'LIVE STUDIO'}</button>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto pt-32 pb-24 px-8">
+      <main className="max-w-7xl mx-auto pt-56 px-8 pb-40">
         {step === AppStep.START && (
-          <div className="max-w-4xl mx-auto text-center py-20 animate-in fade-in slide-in-from-bottom-10 duration-1000">
-            <div className="inline-block px-4 py-2 bg-blue-100 border-2 border-blue-600 rounded-full mb-8">
-              <span className="text-xs font-black uppercase tracking-widest text-blue-600">The Ultimate How-To Suite</span>
-            </div>
-            <h2 className="text-[8rem] font-black leading-[0.8] tracking-tighter mb-12 lg:text-[10rem]">
-              ONCE <br/>YOU <br/><span className="text-blue-600 italic underline decoration-[16px] decoration-blue-100 text-nowrap">KNOW HOW.</span>
-            </h2>
-            <p className="text-3xl font-bold text-gray-400 mb-16 tracking-tight leading-snug">
-              60 Scripted Segments. Full Narration Sync. <br/>A 10-minute masterclass, produced in minutes.
-            </p>
-            <div className="relative group max-w-3xl mx-auto mb-16">
+          <div className="max-w-5xl mx-auto text-center py-10 animate-in fade-in slide-in-from-bottom-10">
+            <h2 className="text-6xl md:text-[10rem] font-black leading-[0.75] tracking-tighter mb-20 uppercase italic">ANIMATE.<br/>THE FUTURE.</h2>
+            <div className="relative max-w-4xl mx-auto mb-16">
               <input 
                 type="text" 
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
-                placeholder="Baking sourdough is a breeze... once you know how"
-                className="w-full px-12 py-10 text-3xl rounded-[40px] border-8 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] focus:outline-none focus:ring-8 focus:ring-blue-100 transition-all font-black placeholder:text-gray-200"
-                onKeyDown={(e) => e.key === 'Enter' && startGeneration()}
+                onKeyDown={(e) => e.key === 'Enter' && initiateHookSearch()}
+                placeholder="Topic for your video..."
+                className="w-full px-12 py-10 text-3xl md:text-5xl rounded-[60px] border-[8px] border-black shadow-[16px_16px_0_0_rgba(0,0,0,1)] focus:outline-none focus:ring-[20px] focus:ring-blue-100 font-black transition-all placeholder:text-gray-100 italic"
               />
-              <button 
-                onClick={startGeneration}
-                className="absolute right-6 top-6 bottom-6 px-12 bg-black text-white rounded-[32px] font-black text-2xl hover:bg-blue-600 transition-all active:scale-95 disabled:opacity-50"
-                disabled={!topic.trim()}
-              >
-                PRODUCE FILM
-              </button>
+              <button onClick={() => initiateHookSearch()} className="absolute right-6 top-6 bottom-6 px-10 bg-black text-white rounded-[50px] font-black text-xl hover:bg-blue-600 transition-all shadow-xl">HOOK IT</button>
             </div>
-
-            <div className="max-w-5xl mx-auto">
-              <p className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-6">Trending Tutorials</p>
-              <div className="flex flex-wrap justify-center gap-4">
-                {SUGGESTED_TOPICS.map((t) => (
-                  <button
-                    key={t}
-                    onClick={() => setTopic(t)}
-                    className="px-6 py-3 bg-white border-4 border-black rounded-2xl font-black text-sm uppercase tracking-tight hover:bg-blue-50 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-y-0 active:shadow-none"
-                  >
-                    {t}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {error && <p className="mt-12 text-red-600 font-black text-xl bg-red-50 border-4 border-red-100 p-6 rounded-3xl inline-block">{error}</p>}
-          </div>
-        )}
-
-        {step === AppStep.GENERATING_SCRIPT && (
-          <div className="flex flex-col items-center justify-center py-40">
-            <div className="w-32 h-32 border-[16px] border-gray-100 border-t-black rounded-full animate-spin mb-12"></div>
-            <h3 className="text-5xl font-black tracking-tighter uppercase">Scripting...</h3>
-            <p className="text-2xl text-gray-400 font-bold mt-4 uppercase tracking-widest">Architecting 60 scenes for: {topic}</p>
-          </div>
-        )}
-
-        {step === AppStep.REFINING_SCENES && (
-          <div className="animate-in fade-in duration-500">
-            <div className="flex justify-between items-center mb-16">
-              <div>
-                <h3 className="text-6xl font-black tracking-tighter uppercase">Production Queue</h3>
-                <p className="text-2xl font-bold text-gray-400 uppercase tracking-tight">Synchronizing audio, video, and imagery.</p>
-              </div>
-              <button 
-                onClick={processAllScenes}
-                className="px-16 py-8 bg-black text-white rounded-[32px] font-black text-3xl shadow-[0_32px_64px_rgba(0,0,0,0.2)] hover:-translate-y-2 hover:bg-blue-600 transition-all"
-              >
-                BEGIN ANIMATION
-              </button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {scenes.map((scene, idx) => (
-                <div key={idx} className="bg-white p-6 rounded-[32px] border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between group hover:border-blue-600 transition-colors">
-                  <div>
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-xl font-black text-gray-200 group-hover:text-blue-600">{String(idx + 1).padStart(2, '0')}</span>
-                      <div className="status-indicator">
-                        {scene.status === 'idle' && <span className="w-3 h-3 bg-gray-100 rounded-full inline-block"></span>}
-                        {scene.status === 'completed' && <span className="w-3 h-3 bg-green-500 rounded-full inline-block"></span>}
-                        {['generating-image', 'generating-video', 'generating-audio'].includes(scene.status) && <span className="w-3 h-3 bg-blue-600 rounded-full animate-pulse inline-block"></span>}
-                        {scene.status === 'error' && <span className="w-3 h-3 bg-red-600 rounded-full inline-block"></span>}
-                      </div>
-                    </div>
-                    <h4 className="text-lg font-black mb-1 uppercase leading-none truncate">{scene.title}</h4>
-                  </div>
-                  <div className="mt-4 text-[9px] font-black text-gray-300 uppercase tracking-widest">
-                    {scene.status.split('-').join(' ')}
-                  </div>
-                </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              {suggestions.map((s, i) => (
+                <button key={i} onClick={() => initiateHookSearch(s)} className="px-6 py-3 bg-white border-2 border-black rounded-[20px] font-black uppercase text-[10px] tracking-widest hover:bg-black hover:text-white transition-all shadow-[6px_6px_0_0_rgba(0,0,0,1)] active:shadow-none italic">{s}</button>
               ))}
             </div>
           </div>
         )}
 
-        {step === AppStep.FINAL_VIDEO && (
-          <div className="max-w-6xl mx-auto py-20 animate-in fade-in duration-1000">
-            <div className="text-center mb-24">
-              <h3 className="text-[12rem] font-black leading-none tracking-tighter uppercase mb-4">THE PREMIERE.</h3>
-              <p className="text-4xl font-bold text-gray-400 uppercase tracking-widest leading-none mt-4 italic">{topic}</p>
-            </div>
-
-            <TheaterPlayer scenes={scenes} />
-
-            <div className="mt-40 grid grid-cols-1 gap-20">
-              <div className="flex flex-col items-center">
-                 <h4 className="text-2xl font-black uppercase mb-12 italic tracking-tighter">Production Overview (60 Segments)</h4>
-                 <div className="flex flex-wrap justify-center gap-2 max-w-4xl">
-                   {scenes.map((_, i) => (
-                     <div key={i} className="w-8 h-8 bg-black rounded-sm flex items-center justify-center text-[10px] text-white font-black">
-                       {i+1}
-                     </div>
-                   ))}
-                 </div>
-              </div>
-
-              <div className="text-center pt-20">
+        {step === AppStep.HOOK_SELECTION && (
+          <div className="max-w-6xl mx-auto animate-in fade-in zoom-in-95">
+            <h3 className="text-7xl md:text-[8rem] font-black uppercase tracking-tighter leading-[0.8] italic mb-20">CHOOSE<br/>A HOOK.</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+              {hooks.length > 0 ? hooks.map((h, i) => (
                 <button 
-                  onClick={() => window.location.reload()}
-                  className="px-24 py-12 bg-black text-white rounded-full font-black text-4xl hover:bg-blue-600 hover:scale-110 transition-all shadow-[0_40px_80px_rgba(0,0,0,0.3)] uppercase tracking-tighter"
+                  key={i} 
+                  onClick={() => startProduction(h)}
+                  className="p-10 text-left bg-white border-[6px] border-black rounded-[45px] shadow-[12px_12px_0_0_rgba(0,0,0,1)] hover:-translate-y-2 hover:shadow-[20px_20px_0_0_rgba(0,0,0,1)] transition-all flex flex-col justify-between aspect-square group"
                 >
-                  New Production
+                  <span className="text-5xl font-black text-gray-100 italic">0{i+1}</span>
+                  <p className="text-3xl font-black uppercase tracking-tighter italic leading-tight group-hover:text-blue-600 transition-colors">{h}</p>
                 </button>
-              </div>
+              )) : <div className="col-span-3 text-center text-5xl font-black animate-pulse opacity-10 py-20 italic">ORCHESTRATING...</div>}
             </div>
+          </div>
+        )}
+
+        {(step === AppStep.GENERATING_SCRIPT || step === AppStep.REFINING_SCENES) && (
+          <div className="animate-in fade-in">
+             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+                <div>
+                   <h3 className="text-7xl md:text-8xl font-black uppercase tracking-tighter italic leading-none">PIPELINE.</h3>
+                   <p className="mt-6 text-xl font-black text-blue-600 uppercase tracking-widest italic">{selectedHook}</p>
+                </div>
+                {!isProcessing && step === AppStep.REFINING_SCENES && (
+                  <button onClick={runRender} className="px-16 py-8 bg-black text-white rounded-[40px] font-black text-3xl shadow-2xl hover:-translate-y-2 transition-all active:scale-95">START RENDER</button>
+                )}
+             </div>
+
+             <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
+                {scenes.map((s, i) => (
+                  <div key={i} className={`p-8 rounded-[40px] border-[5px] border-black shadow-[10px_10px_0_0_rgba(0,0,0,1)] aspect-[4/6] flex flex-col justify-between transition-all ${s.status === 'completed' ? 'bg-blue-50 border-blue-600 shadow-[12px_12px_0_0_rgba(37,99,235,1)]' : 'bg-white'}`}>
+                     <div>
+                        <span className="text-4xl font-black italic opacity-10">0{i+1}</span>
+                        <p className="mt-6 text-sm font-black uppercase tracking-tighter italic line-clamp-3">"{s.screenText}"</p>
+                     </div>
+                     <div className={`py-3 rounded-2xl border-2 border-black text-center font-black uppercase text-[8px] tracking-widest ${s.status === 'completed' ? 'bg-black text-white' : 'bg-white text-black'}`}>
+                        {s.status.replace('-', ' ')}
+                     </div>
+                  </div>
+                ))}
+             </div>
+
+             {isProcessing && (
+                <div className="mt-20 text-center animate-pulse">
+                   <p className="text-3xl font-black uppercase italic tracking-tighter text-blue-600">{PRODUCTION_LOGS[logIdx]}</p>
+                </div>
+             )}
+          </div>
+        )}
+
+        {step === AppStep.FINAL_VIDEO && (
+          <div className="animate-in zoom-in-95 duration-700">
+             <div className="text-center mb-20">
+                <h3 className="text-8xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.7] italic mb-6">PREMIERE.</h3>
+                <div className="inline-block px-10 py-3 bg-black text-white rounded-full font-black text-xs tracking-[1em] uppercase border-[6px] border-blue-600 italic">Mastered for 4K Playback</div>
+             </div>
+             <SeamlessPlayer scenes={scenes} vibe={vibe} />
+             <div className="mt-24 text-center">
+                <button onClick={() => window.location.reload()} className="text-gray-200 font-black uppercase tracking-[1em] hover:text-blue-600 transition-all text-xl underline decoration-[8px] underline-offset-[20px]">Return to Start</button>
+             </div>
           </div>
         )}
       </main>
 
-      <footer className="w-full py-24 border-t-8 border-black bg-white flex flex-col items-center gap-6">
-        <div className="flex gap-4">
-          {[1,2,3,4,5].map(i => <div key={i} className="w-4 h-4 bg-gray-100 rounded-full"></div>)}
-        </div>
-        <p className="font-black text-xs uppercase tracking-[0.5em] text-gray-300">Once You Know How Studio — v2.0</p>
+      <footer className="p-16 text-center border-t-2 border-black/5 opacity-40">
+        <p className="text-[10px] font-black uppercase tracking-[2em] italic">Studio Core Hyper-Scale Engine v6.1</p>
       </footer>
     </div>
   );

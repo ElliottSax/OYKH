@@ -1,21 +1,25 @@
 
+export type ProductionVibe = 'cosmic' | 'hype' | 'minimal' | 'suspense' | 'success';
+
 export interface Scene {
   title: string;
   script: string;
   visualDescription: string;
+  screenText: string; 
   imageData?: string;
-  videoUrl?: string;
   audioUrl?: string;
-  status: 'idle' | 'generating-image' | 'generating-video' | 'generating-audio' | 'completed' | 'error';
+  status: 'idle' | 'generating-image' | 'generating-audio' | 'completed' | 'error';
 }
 
-export interface ExplainerProject {
+export interface ProjectConfig {
   topic: string;
-  scenes: Scene[];
+  vibe: ProductionVibe;
+  hook: string;
 }
 
 export enum AppStep {
   START = 'START',
+  HOOK_SELECTION = 'HOOK_SELECTION',
   GENERATING_SCRIPT = 'GENERATING_SCRIPT',
   REFINING_SCENES = 'REFINING_SCENES',
   FINAL_VIDEO = 'FINAL_VIDEO'
