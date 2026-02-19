@@ -10,13 +10,31 @@
   },
   "dependencies": {
     "react": "^19.2.3",
-    "@google/genai": "^1.34.0",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "@google/genai": "^1.34.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^5.0.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
+  },
+  "comments": {
+    "production-backend": "For production backend (Cloud Functions):",
+    "dependencies-backend": [
+      "@google-cloud/aiplatform (Imagen 3)",
+      "@google-cloud/text-to-speech (Google TTS)",
+      "@google-cloud/storage (Asset storage)",
+      "express (API server)",
+      "cors (CORS handling)"
+    ],
+    "video-assembly": "For video assembly (choose one):",
+    "video-options": [
+      "shotstack-sdk (Recommended - API-based)",
+      "creatomate (Alternative API)",
+      "canvas + mediarecorder (Client-side, basic)"
+    ]
   }
 }
