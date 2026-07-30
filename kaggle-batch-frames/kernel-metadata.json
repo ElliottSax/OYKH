@@ -1,0 +1,11 @@
+{
+  "id": "elliottsax/oykh-batch-frames",
+  "title": "oykh batch frame generator",
+  "code_file": "batch-generate-frames.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["elliottsax/oykhchar-lora-final"]
+}

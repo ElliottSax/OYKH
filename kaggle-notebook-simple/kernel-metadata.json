@@ -1,0 +1,11 @@
+{
+  "id": "elliottsax/oykhchar-lora-training",
+  "title": "oykhchar lora training",
+  "code_file": "train-lora.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["elliottsax/oykhchar-training"]
+}

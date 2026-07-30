@@ -54,6 +54,7 @@ Open [http://localhost:3000](http://localhost:3000)
 ## What You'll Get
 
 ### Development Mode (Now):
+
 - ✅ Viral script generation (real Gemini API)
 - ✅ 150-180 shot breakdown
 - ✅ Retention optimization
@@ -62,6 +63,7 @@ Open [http://localhost:3000](http://localhost:3000)
 - **Cost**: ~$0.002 per video
 
 ### Production Mode (After Backend Setup):
+
 - ✅ Real Imagen 3 character animation
 - ✅ Real Google TTS narration
 - ✅ MP4 video export
@@ -81,14 +83,17 @@ Open [http://localhost:3000](http://localhost:3000)
 ## Troubleshooting
 
 **"Model not found"**:
+
 - Check your API key is correct
 - Make sure it starts with `AIza`
 
 **Nothing happens when clicking buttons**:
+
 - Check browser console (F12)
 - Verify API key in `.env.local`
 
 **Want real images/audio**:
+
 - See [README.md](README.md) → Production Setup
 
 ---

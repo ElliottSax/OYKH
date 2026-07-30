@@ -1,21 +1,48 @@
-
 export type ProductionVibe = 'cosmic' | 'hype' | 'minimal' | 'suspense' | 'success';
+
+export type VideoJobStatus =
+  | 'new'
+  | 'queued'
+  | 'running'
+  | 'script-generating'
+  | 'script-failed'
+  | 'script-generated'
+  | 'video-generating'
+  | 'video-failed'
+  | 'video-generated'
+  | 'complete'
+  | 'failed';
+
+export interface VideoJob {
+  id: string;
+  status: VideoJobStatus;
+  topic: string;
+  vibe: ProductionVibe;
+  script?: ViralVideoScript;
+  assetUrls?: string[];
+  finalVideoUrl?: string;
+  createdAt: any;
+  updatedAt: any;
+  progress?: number;
+  currentStep?: string;
+  error?: string;
+  jobId?: string;
+  message?: string;
+  videoUrl?: string;
+  imageResults?: Map<number, string>;
+}
 
 // Core Video Script Structure
 export interface ViralVideoScript {
-  // Metadata
   metadata: VideoMetadata;
-
-  // Content
   chapters: ViralChapter[];
-
-  // Engagement Mechanics
   openLoops: OpenLoop[];
   retentionBombs: RetentionBomb[];
-
-  // Production notes
   totalShots: number;
   estimatedCost: number;
+  shots: Shot[];
+  vibe: ProductionVibe;
+  voice: GoogleVoice;
 }
 
 export interface VideoMetadata {
@@ -46,16 +73,16 @@ export interface ViralChapter {
 }
 
 export type ChapterPurpose =
-  | 'cold-open'    // First 3 seconds
-  | 'hook'         // Grab attention
-  | 'setup'        // Establish context
+  | 'cold-open' // First 3 seconds
+  | 'hook' // Grab attention
+  | 'setup' // Establish context
   | 'build-tension' // Increase curiosity
-  | 'payoff'       // Answer question
-  | 'surprise'     // Unexpected twist
-  | 'deepdive'     // Detailed explanation
-  | 'relate'       // Make it personal
-  | 'resolve'      // Close loops
-  | 'cta';         // Call to action
+  | 'payoff' // Answer question
+  | 'surprise' // Unexpected twist
+  | 'deepdive' // Detailed explanation
+  | 'relate' // Make it personal
+  | 'resolve' // Close loops
+  | 'cta'; // Call to action
 
 export interface Shot {
   shotNumber: number;
@@ -71,7 +98,7 @@ export interface Shot {
   backgroundStyle: BackgroundStyle;
 
   // AI Generation Prompt (for Imagen 3)
-  imagenPrompt: string;
+  prompt: string;
 
   // Text Overlay
   textOverlay?: TextOverlay;
@@ -165,11 +192,7 @@ export type TransitionType =
   | 'iris-out'
   | 'morph';
 
-export type ShotStatus =
-  | 'pending'
-  | 'generating'
-  | 'completed'
-  | 'error';
+export type ShotStatus = 'pending' | 'generating' | 'completed' | 'error';
 
 export interface TextOverlay {
   text: string;
@@ -268,17 +291,17 @@ export enum AppStep {
   GENERATING_AUDIO = 'GENERATING_AUDIO',
   ASSEMBLING_VIDEO = 'ASSEMBLING_VIDEO',
   FINAL_VIDEO = 'FINAL_VIDEO',
-  ERROR = 'ERROR'
+  ERROR = 'ERROR',
 }
 
 // Voice Configuration
 export type GoogleVoice =
-  | 'en-US-Journey-D'  // Energetic male
-  | 'en-US-Journey-F'  // Warm female
-  | 'en-US-Journey-O'  // Authoritative
-  | 'en-US-Studio-M'   // Documentary male
-  | 'en-US-Studio-O'   // Professional female
-  | 'en-US-Neural2-D'  // Friendly male
+  | 'en-US-Journey-D' // Energetic male
+  | 'en-US-Journey-F' // Warm female
+  | 'en-US-Journey-O' // Authoritative
+  | 'en-US-Studio-M' // Documentary male
+  | 'en-US-Studio-O' // Professional female
+  | 'en-US-Neural2-D' // Friendly male
   | 'en-US-Neural2-F'; // Clear female
 
 export interface GenerationProgress {

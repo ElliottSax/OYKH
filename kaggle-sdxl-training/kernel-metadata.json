@@ -1,0 +1,14 @@
+{
+  "id": "elliottsax/oykhchar-sdxl-lora-training",
+  "title": "OYKHCHAR SDXL LoRA Training (FREE)",
+  "code_file": "oykhchar-sdxl-lora.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": ["elliottsax/oykhchar-lora-images"],
+  "competition_sources": [],
+  "kernel_sources": []
+}

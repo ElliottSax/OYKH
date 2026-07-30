@@ -1,0 +1,361 @@
+{
+  "metadata": {
+    "topic": "how coffee affects your brain",
+    "hook": "The Secret of how coffee affects your brain",
+    "title": "Coffee & Your Brain: The UNTOLD Science",
+    "vibe": "minimal",
+    "targetDuration": 120,
+    "thumbnailConcept": {
+      "mainElement": "White stick figure with thick black vector outline holding a glowing coffee cup, with a stylized brain symbol above its head.",
+      "emotion": "shocked, curious",
+      "text": "COFFEE BRAIN HACK",
+      "colorScheme": "deep blues and purples with bright yellow/white accents"
+    }
+  },
+  "chapters": [
+    {
+      "chapterNumber": 1,
+      "title": "The Awakening Mystery",
+      "timestamp": "0:00",
+      "duration": 30,
+      "purpose": "Hook viewers, introduce the core question: what coffee *really* does.",
+      "narration": "Ever wonder what *truly* happens in your brain moments after that first sip of coffee? It's more than just waking up. This isn't just a drink; it's a direct line to your brain's most secret corners. Prepare to uncover the surprising science.",
+      "keyMessage": "Coffee's profound, immediate impact on the brain.",
+      "emotionalTone": "curious, intriguing",
+      "shots": [
+        {
+          "shotNumber": 1,
+          "duration": 5,
+          "characterAction": "pointing at viewer with an inviting, curious gesture, a 'lightbulb' icon appearing over its head",
+          "characterEmotion": "excited, engaging",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, pointing at viewer with an inviting, curious gesture, a 'lightbulb' icon appearing over its head. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "fade in",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 2,
+          "duration": 6,
+          "characterAction": "holding a large, stylized coffee mug, steam rising, looking thoughtful",
+          "characterEmotion": "thoughtful, slightly mysterious",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "slight zoom out",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, holding a large, stylized coffee mug, steam rising, looking thoughtful. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "zoom out",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 3,
+          "duration": 5,
+          "characterAction": "pointing to a stylized, glowing brain graphic next to it, which pulses gently",
+          "characterEmotion": "informative, direct",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, pointing to a stylized, glowing brain graphic next to it, which pulses gently. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "pulse effect on brain graphic",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 4,
+          "duration": 6,
+          "characterAction": "holding hands out as if presenting a secret, looking directly at the camera",
+          "characterEmotion": "intrigued, revealing",
+          "cameraAngle": "close-up",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, holding hands out as if presenting a secret, looking directly at the camera. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "quick text reveal 'THE SECRET'",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 5,
+          "duration": 6,
+          "characterAction": "raising an eyebrow, with question marks floating around its head, looking puzzled then understanding",
+          "characterEmotion": "puzzled then understanding",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, raising an eyebrow, with question marks floating around its head, looking puzzled then understanding. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "question marks appear/disappear",
+          "transition": "cut",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "chapterNumber": 2,
+      "title": "The Adenosine Blockade",
+      "timestamp": "0:30",
+      "duration": 30,
+      "purpose": "Explain the primary mechanism: caffeine blocking adenosine.",
+      "narration": "First, meet Adenosine, your brain's natural chill-out molecule. It builds up throughout the day, telling your brain, 'time to sleep!' But then, caffeine swoops in. Structurally, it's almost identical, allowing it to trick your brain, binding to those adenosine receptors.",
+      "keyMessage": "Caffeine mimics adenosine, preventing fatigue signals.",
+      "emotionalTone": "informative, slightly playful",
+      "shots": [
+        {
+          "shotNumber": 6,
+          "duration": 5,
+          "characterAction": "holding up a simple icon representing 'Adenosine' (e.g., a 'Zz' symbol), looking tired",
+          "characterEmotion": "tired, then alert",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, holding up a simple icon representing 'Adenosine' (e.g., a 'Zz' symbol), looking tired. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "fade in 'Adenosine'",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 7,
+          "duration": 6,
+          "characterAction": "showing two identical 'key' shapes, one labeled 'Adenosine', one 'Caffeine', demonstrating how they fit a 'lock' (receptor)",
+          "characterEmotion": "explaining, precise",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, showing two identical 'key' shapes, one labeled 'Adenosine', one 'Caffeine', demonstrating how they fit a 'lock' (receptor). Blue-purple gradient background with sophisticated lighting.",
+          "animation": "key/lock animation",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 8,
+          "duration": 5,
+          "characterAction": "pushing away an invisible 'tiredness' cloud, looking determined",
+          "characterEmotion": "determined, energetic",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, pushing away an invisible 'tiredness' cloud, looking determined. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "cloud dissipates",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 9,
+          "duration": 6,
+          "characterAction": "standing next to a brain graphic with 'alertness' symbols (e.g., stars, lightning bolts) appearing",
+          "characterEmotion": "empowered, active",
+          "cameraAngle": "full shot",
+          "cameraMovement": "zoom in on brain",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, standing next to a brain graphic with 'alertness' symbols (e.g., stars, lightning bolts) appearing. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "symbols appear on brain",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 10,
+          "duration": 5,
+          "characterAction": "holding up a small 'blockade' sign in front of a stylized receptor",
+          "characterEmotion": "explaining, direct",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, holding up a small 'blockade' sign in front of a stylized receptor. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "sign appears",
+          "transition": "cut",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "chapterNumber": 3,
+      "title": "Dopamine's Delight & Beyond",
+      "timestamp": "1:00",
+      "duration": 30,
+      "purpose": "Explain dopamine release and other positive cognitive effects.",
+      "narration": "But wait, there's more! By blocking adenosine, caffeine actually *increases* the release of other neurotransmitters like Dopamine. That's your reward system, giving you that feel-good buzz, improved mood, and heightened focus. It also affects norepinephrine, sharpening your attention. ",
+      "keyMessage": "Caffeine boosts dopamine, improving mood and focus.",
+      "emotionalTone": "uplifting, informative",
+      "shots": [
+        {
+          "shotNumber": 11,
+          "duration": 6,
+          "characterAction": "standing confidently, with 'Dopamine' text and 'happy' emojis radiating from it",
+          "characterEmotion": "joyful, energetic",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "zoom in slightly",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, standing confidently, with 'Dopamine' text and 'happy' emojis radiating from it. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "emojis radiate",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 12,
+          "duration": 5,
+          "characterAction": "pointing to its own temple, indicating 'focus' or 'concentration' with stylized gears turning",
+          "characterEmotion": "focused, insightful",
+          "cameraAngle": "close-up",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, pointing to its own temple, indicating 'focus' or 'concentration' with stylized gears turning. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "gears turn",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 13,
+          "duration": 6,
+          "characterAction": "holding a magnifying glass over a concept representing 'attention' or 'norepinephrine' symbol",
+          "characterEmotion": "observant, precise",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, holding a magnifying glass over a concept representing 'attention' or 'norepinephrine' symbol. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "magnifying effect",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 14,
+          "duration": 5,
+          "characterAction": "juggling multiple tasks (represented by simple icons: book, computer, pen), looking efficient",
+          "characterEmotion": "efficient, capable",
+          "cameraAngle": "full shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, juggling multiple tasks (represented by simple icons: book, computer, pen), looking efficient. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "icons float around",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 15,
+          "duration": 6,
+          "characterAction": "gesturing to a timeline graphic showing 'improved memory' and 'faster reaction time'",
+          "characterEmotion": "informative, confident",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "pan across timeline",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, gesturing to a timeline graphic showing 'improved memory' and 'faster reaction time'. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "text highlight on timeline",
+          "transition": "cut",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "chapterNumber": 4,
+      "title": "The Crash & Conscious Consumption",
+      "timestamp": "1:30",
+      "duration": 30,
+      "purpose": "Address the downsides (tolerance, withdrawal) and offer advice.",
+      "narration": "So, what about the crash? As caffeine wears off, all that blocked adenosine floods back, creating that sudden fatigue. And over time, your brain can even grow *more* adenosine receptors, meaning you need even more coffee for the same effect. The secret? Listen to your body. Enjoy coffee, but consume consciously. It's a powerful tool, not a crutch. What are YOUR coffee habits?",
+      "keyMessage": "Understanding tolerance, withdrawal, and the importance of mindful coffee consumption.",
+      "emotionalTone": "cautionary, reflective, empowering",
+      "shots": [
+        {
+          "shotNumber": 16,
+          "duration": 5,
+          "characterAction": "slumped slightly, with a 'wave' graphic washing over it, representing adenosine flooding back",
+          "characterEmotion": "fatigued, slightly overwhelmed",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, slumped slightly, with a 'wave' graphic washing over it, representing adenosine flooding back. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "wave graphic flows",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 17,
+          "duration": 6,
+          "characterAction": "showing two brains: one with few receptors, one with many, demonstrating 'tolerance'",
+          "characterEmotion": "explaining, serious",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "zoom in on receptor growth",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, showing two brains: one with few receptors, one with many, demonstrating 'tolerance'. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "receptors increase",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 18,
+          "duration": 5,
+          "characterAction": "holding a balance scale, with coffee on one side and a 'sleep' icon on the other",
+          "characterEmotion": "balanced, thoughtful",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, holding a balance scale, with coffee on one side and a 'sleep' icon on the other. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "scale sways then balances",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 19,
+          "duration": 6,
+          "characterAction": "gesturing to a 'clock' icon, emphasizing timing for consumption",
+          "characterEmotion": "advising, helpful",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, gesturing to a 'clock' icon, emphasizing timing for consumption. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "clock hands spin",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 20,
+          "duration": 4,
+          "characterAction": "standing confidently with arms crossed, a 'power' icon glowing subtly",
+          "characterEmotion": "empowered, wise",
+          "cameraAngle": "full shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, standing confidently with arms crossed, a 'power' icon glowing subtly. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "glow pulses",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 21,
+          "duration": 4,
+          "characterAction": "pointing down, inviting interaction, with a speech bubble graphic for 'comments'",
+          "characterEmotion": "engaging, friendly",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, pointing down, inviting interaction, with a speech bubble graphic for 'comments'. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "speech bubble animates",
+          "transition": "cut",
+          "status": "pending"
+        },
+        {
+          "shotNumber": 22,
+          "duration": 5,
+          "characterAction": "giving a thumbs up and a satisfied nod, next to a 'Like & Subscribe' prompt",
+          "characterEmotion": "satisfied, encouraging",
+          "cameraAngle": "medium shot",
+          "cameraMovement": "static",
+          "backgroundStyle": "blue-purple gradient with sophisticated lighting",
+          "imagenPrompt": "White stick figure with thick black vector outline (8-10px stroke), perfectly round head, two simple black dot eyes, giving a thumbs up and a satisfied nod, next to a 'Like & Subscribe' prompt. Blue-purple gradient background with sophisticated lighting.",
+          "animation": "prompt appears",
+          "transition": "cut",
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "openLoops": [
+    "What about the post-coffee crash?",
+    "Does drinking coffee everyday change anything long-term?"
+  ],
+  "retentionBombs": [
+    "The REAL secret is how it changes your brain *over time*, not just immediately.",
+    "Your brain can actually *adapt* to coffee, making you need more!"
+  ],
+  "totalShots": 22,
+  "estimatedCost": 11
+}

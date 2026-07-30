@@ -1,0 +1,12 @@
+{
+  "id": "elliottsax/oykhchar-lora-training",
+  "title": "oykhchar lora training",
+  "code_file": "oykhchar-lora-training.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["elliottsax/oykhchar-training"],
+  "kernel_sources": []
+}

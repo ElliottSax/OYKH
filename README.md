@@ -3,6 +3,7 @@
 **AI-powered viral explainer video generation system** following Google AI Studio best practices.
 
 Generates 5-minute educational YouTube videos in the style of Kurzgesagt and CGP Grey using:
+
 - **Gemini 1.5 Flash** for viral script generation
 - **Imagen 3** for minimalist character animation
 - **Google Cloud TTS** for professional narration
@@ -12,6 +13,7 @@ Generates 5-minute educational YouTube videos in the style of Kurzgesagt and CGP
 ## 🚀 Quick Start (Development Mode)
 
 ### Prerequisites
+
 - Node.js 18+
 - Google Cloud account (for production)
 
@@ -21,14 +23,11 @@ Generates 5-minute educational YouTube videos in the style of Kurzgesagt and CGP
 # Install dependencies
 npm install
 
-# Create environment file
-cp .env.example .env.local
-
-# Add your API key
+# Add your API key to .env
 # GEMINI_API_KEY=your_key_here
 
 # Run development server
-npm run dev
+npm run dev:all
 ```
 
 Open [http://localhost:3000](http://localhost:3000)
@@ -39,15 +38,15 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ```
 oykh-temp/
-├── services/
-│   ├── gemini.ts          # Script generation (Gemini 1.5 Flash)
-│   ├── imagen.ts          # Image generation (Imagen 3)
-│   └── tts.ts             # Audio generation (Google TTS)
-├── types.ts               # TypeScript definitions
-├── App.tsx                # Main application
-├── index.tsx              # Entry point
-├── index.html             # HTML template
-└── vite.config.ts         # Build configuration
+├── client/
+│   ├── src/
+│   ├── index.html
+│   └── vite.config.ts
+├── server/
+│   ├── services/
+│   ├── functions/
+│   └── server.ts
+└── package.json
 ```
 
 ---
@@ -55,6 +54,7 @@ oykh-temp/
 ## 🎯 Current Implementation Status
 
 ### ✅ Working (Development Mode)
+
 - [x] Viral script generation with Gemini 1.5 Flash
 - [x] Structured output with retention optimization
 - [x] Shot-by-shot planning
@@ -63,6 +63,7 @@ oykh-temp/
 - [x] Step-based UI workflow
 
 ### 🚧 In Progress
+
 - [ ] Imagen 3 integration (needs backend)
 - [ ] Google TTS integration (needs backend)
 - [ ] Video assembly (Shotstack API)
@@ -70,6 +71,7 @@ oykh-temp/
 - [ ] Batch generation mode
 
 ### 📋 Planned
+
 - [ ] Multi-platform export (YouTube, Shorts, TikTok)
 - [ ] Shot optimization (cost reduction)
 - [ ] Analytics dashboard
@@ -175,13 +177,15 @@ export const generateAudio = onRequest(async (req, res) => {
 
 ```typescript
 // Instead of calling Google APIs directly:
-const response = await ai.models.generateContent({ /* ... */ });
+const response = await ai.models.generateContent({
+  /* ... */
+});
 
 // Call YOUR backend:
 const response = await fetch('/api/generate-script', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ topic, hook, vibe })
+  body: JSON.stringify({ topic, hook, vibe }),
 });
 ```
 
@@ -204,7 +208,7 @@ export const assembleVideo = async (shots, audioUrl, musicUrl) => {
     timeline: {
       soundtrack: {
         src: audioUrl,
-        effect: 'fadeIn'
+        effect: 'fadeIn',
       },
       background: musicUrl,
       tracks: [
@@ -212,35 +216,35 @@ export const assembleVideo = async (shots, audioUrl, musicUrl) => {
           clips: shots.map((shot, i) => ({
             asset: {
               type: 'image',
-              src: shot.imageData
+              src: shot.imageData,
             },
             start: shot.startTime,
             length: shot.duration,
             transition: {
               in: shot.transition,
-              out: 'fade'
+              out: 'fade',
             },
-            effect: shot.animation // ken-burns, etc.
-          }))
+            effect: shot.animation, // ken-burns, etc.
+          })),
         },
         {
           clips: shots
-            .filter(shot => shot.textOverlay)
-            .map(shot => ({
+            .filter((shot) => shot.textOverlay)
+            .map((shot) => ({
               asset: {
                 type: 'html',
-                html: renderTextOverlay(shot.textOverlay)
+                html: renderTextOverlay(shot.textOverlay),
               },
               start: shot.startTime,
-              length: shot.duration
-            }))
-        }
-      ]
+              length: shot.duration,
+            })),
+        },
+      ],
     },
     output: {
       format: 'mp4',
-      resolution: '1080'
-    }
+      resolution: '1080',
+    },
   };
 
   const response = await client.render.postRender(edit);
@@ -257,7 +261,7 @@ export const assembleVideo = async (shots, audioUrl, musicUrl) => {
 export const optimizeShots = (shots: Shot[]) => {
   const groups = new Map<string, Shot[]>();
 
-  shots.forEach(shot => {
+  shots.forEach((shot) => {
     const key = `${shot.characterAction}-${shot.cameraAngle}`;
 
     if (!groups.has(key)) {
@@ -268,18 +272,17 @@ export const optimizeShots = (shots: Shot[]) => {
   });
 
   // Generate only unique shots
-  const uniqueShots = Array.from(groups.entries())
-    .map(([key, shots]) => shots[0]);
+  const uniqueShots = Array.from(groups.entries()).map(([key, shots]) => shots[0]);
 
   // Reuse with CSS variations
-  const optimizedShots = shots.map(shot => {
+  const optimizedShots = shots.map((shot) => {
     const groupKey = `${shot.characterAction}-${shot.cameraAngle}`;
     const baseShot = groups.get(groupKey)![0];
 
     return {
       ...shot,
       imageData: baseShot.imageData,
-      cssTransform: getAnimationTransform(shot.animation)
+      cssTransform: getAnimationTransform(shot.animation),
     };
   });
 
@@ -294,10 +297,12 @@ export const optimizeShots = (shots: Shot[]) => {
 ### Per 5-Minute Video (150 shots):
 
 **Development (Mock Mode)**:
+
 - Script generation: $0.002
 - Total: **$0.002**
 
 **Production (All Google)**:
+
 - Gemini 1.5 Flash (script): $0.002
 - Imagen 3 (150 images @ $0.02): $3.00
 - Google TTS (narration): $0.08
@@ -305,6 +310,7 @@ export const optimizeShots = (shots: Shot[]) => {
 - Total: **$3.13 per video**
 
 **Optimized (40% shot reuse)**:
+
 - Gemini 1.5 Flash (script): $0.002
 - Imagen 3 (90 unique @ $0.02): $1.80
 - Google TTS (narration): $0.08
@@ -312,6 +318,7 @@ export const optimizeShots = (shots: Shot[]) => {
 - Total: **$1.93 per video**
 
 **Monthly Estimates**:
+
 - 10 videos/month: $19.30
 - 50 videos/month: $96.50
 - 100 videos/month: $193.00
@@ -371,17 +378,21 @@ STORAGE_BUCKET=your-storage-bucket
 ## 🐛 Troubleshooting
 
 **"Model not found" error**:
+
 - Ensure you're using `gemini-1.5-flash` (NOT `gemini-3-flash-preview`)
 
 **Images not generating**:
+
 - Development mode uses placeholders by default
 - For real images, set up Imagen 3 backend (see Production Setup)
 
 **No audio**:
+
 - Development mode uses silent audio
 - For real narration, set up Google TTS backend
 
 **API rate limits**:
+
 - Add delays between batch requests
 - Implement exponential backoff
 - Use shot optimization to reduce API calls
@@ -397,6 +408,7 @@ MIT License - See LICENSE file for details
 ## 🤝 Contributing
 
 Contributions welcome! Please:
+
 1. Fork the repository
 2. Create a feature branch
 3. Submit a pull request
@@ -406,6 +418,7 @@ Contributions welcome! Please:
 ## 📞 Support
 
 For issues and questions:
+
 - GitHub Issues: [Report a bug](https://github.com/your-repo/issues)
 - Documentation: See `/docs` folder
 

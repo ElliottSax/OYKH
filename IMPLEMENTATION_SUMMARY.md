@@ -11,6 +11,7 @@
 ### Phase 1: Core Architecture ✅ COMPLETE
 
 #### 1. Type System (`types.ts`)
+
 - **ViralVideoScript** structure for 5-minute videos
 - Comprehensive shot definitions with:
   - Character actions (15 types)
@@ -27,6 +28,7 @@
 - Progress tracking interfaces
 
 #### 2. Script Generation (`services/gemini.ts`)
+
 - ✅ **Fixed model name**: Now uses `gemini-1.5-flash` (not gemini-3-flash-preview)
 - ✅ **Viral script generation** with structured output
 - Features:
@@ -42,6 +44,7 @@
 - ✅ **Hook generation** for topics
 
 #### 3. Image Generation (`services/imagen.ts`)
+
 - ✅ **Imagen 3 integration** (placeholder for production)
 - Features:
   - Detailed prompt building for each shot
@@ -55,6 +58,7 @@
 - ✅ **CSS variation system** for image reuse
 
 #### 4. Audio Generation (`services/tts.ts`)
+
 - ✅ **Google Cloud TTS integration** (placeholder for production)
 - Features:
   - 7 Google voice options (Journey, Studio, Neural2)
@@ -66,6 +70,7 @@
 - ✅ **Production code examples** in comments
 
 #### 5. Project Configuration
+
 - ✅ **package.json** updated with correct dependencies
 - ✅ **README.md** with comprehensive setup guide
 - ✅ **.env.example** template created
@@ -120,6 +125,7 @@ npm run dev
 ```
 
 **Functional**:
+
 - ✅ Viral script generation (real API)
 - ✅ Topic suggestions (real API)
 - ✅ Hook generation (real API)
@@ -137,20 +143,24 @@ npm run dev
 ### Production Requirements:
 
 1. **Image Generation** (Imagen 3)
+
    ```bash
    # Backend: Google Cloud AI Platform
    npm install @google-cloud/aiplatform
    ```
+
    - Create Cloud Function: `functions/src/generate-image.ts`
    - Call Imagen 3 API
    - Return base64 image
    - **Example code**: See `services/imagen.ts` bottom comments
 
 2. **Audio Generation** (Google TTS)
+
    ```bash
    # Backend: Google Cloud TTS
    npm install @google-cloud/text-to-speech
    ```
+
    - Create Cloud Function: `functions/src/generate-audio.ts`
    - Call TTS API with Journey voices
    - Return MP3 audio
@@ -161,6 +171,7 @@ npm run dev
    # Frontend: Shotstack SDK
    npm install shotstack-sdk
    ```
+
    - Combine all shots into MP4
    - Add audio narration
    - Add background music
@@ -172,10 +183,12 @@ npm run dev
 ## 💰 Cost Analysis
 
 ### Current (Development):
+
 - Gemini 1.5 Flash only
 - **$0.002 per video**
 
 ### Production (All Google Stack):
+
 - Gemini 1.5 Flash: $0.002
 - Imagen 3 (150 shots @ $0.02): $3.00
 - Google TTS: $0.08
@@ -183,6 +196,7 @@ npm run dev
 - **Total: $3.13 per video**
 
 ### Optimized (Shot Reuse):
+
 - Gemini 1.5 Flash: $0.002
 - Imagen 3 (90 unique @ $0.02): $1.80
 - Google TTS: $0.08
@@ -196,6 +210,7 @@ npm run dev
 ### Week 1: Get It Working End-to-End
 
 **Priority 1: Backend Setup**
+
 - [ ] Create Google Cloud project
 - [ ] Enable APIs (AI Platform, TTS, Storage)
 - [ ] Create service account
@@ -205,6 +220,7 @@ npm run dev
 - [ ] Test with real API calls
 
 **Priority 2: Frontend Updates**
+
 - [ ] Update `services/imagen.ts` to call backend
 - [ ] Update `services/tts.ts` to call backend
 - [ ] Add loading states
@@ -212,6 +228,7 @@ npm run dev
 - [ ] Test full pipeline
 
 **Priority 3: Video Assembly**
+
 - [ ] Sign up for Shotstack
 - [ ] Install shotstack-sdk
 - [ ] Create `services/video-assembly.ts`
@@ -221,6 +238,7 @@ npm run dev
 ### Week 2: Polish & Features
 
 **UI/UX Improvements**
+
 - [ ] Add script review step
 - [ ] Add AI refinement buttons
 - [ ] Add visual preview grid
@@ -228,6 +246,7 @@ npm run dev
 - [ ] Add error messages
 
 **Optimization**
+
 - [ ] Implement shot reuse system
 - [ ] Add batch generation mode
 - [ ] Add retry logic
@@ -236,12 +255,14 @@ npm run dev
 ### Week 3: Scale Features
 
 **Multi-Platform**
+
 - [ ] Export 16:9 (YouTube)
 - [ ] Export 9:16 (Shorts/TikTok)
 - [ ] Auto-generate variants
 - [ ] Thumbnail generator
 
 **Analytics**
+
 - [ ] Track generation metrics
 - [ ] Monitor costs
 - [ ] A/B test variations
@@ -281,6 +302,7 @@ npm run dev
 ### Warnings:
 
 ⚠️ **Don't Use in Production Without**:
+
 - Backend proxy (API keys exposed)
 - Rate limiting (unbounded API calls)
 - Error handling (will crash on failures)
@@ -303,7 +325,7 @@ npm run dev
    - Comprehensive type system
    - Well-documented interfaces
 
-3. **services/*.ts**
+3. **services/\*.ts**
    - Production code examples
    - Backend proxy patterns
    - Mock implementations
@@ -327,21 +349,25 @@ npm run dev
 ### What Worked Well:
 
 ✅ **Structured Outputs** (responseSchema)
+
 - Reliable JSON parsing
 - Type-safe from API → UI
 - No regex hacks
 
 ✅ **Google-First Stack**
+
 - Unified billing
 - Better integration
 - Official support
 
 ✅ **Sequential Pipeline**
+
 - Easy to understand
 - Easy to debug
 - AI Studio pattern
 
 ✅ **Mock Services**
+
 - Fast development
 - No API costs
 - Easy testing
@@ -349,18 +375,22 @@ npm run dev
 ### What Changed From Original:
 
 🔄 **Model Names**
+
 - Was: `gemini-3-flash-preview` (doesn't exist)
 - Now: `gemini-1.5-flash` (real model)
 
 🔄 **Image Generation**
+
 - Was: Replicate Flux
 - Now: Imagen 3 (Google native)
 
 🔄 **Architecture**
+
 - Was: Complex multi-agent
 - Now: Simple sequential (AI Studio way)
 
 🔄 **Client vs Server**
+
 - Was: All client-side
 - Now: Backend proxy pattern
 
@@ -369,6 +399,7 @@ npm run dev
 ## 🎯 Success Criteria
 
 **MVP Ready When**:
+
 - [x] Script generation works (real)
 - [ ] Image generation works (real)
 - [ ] Audio generation works (real)
@@ -377,6 +408,7 @@ npm run dev
 - [ ] Total cost < $2 per video
 
 **Production Ready When**:
+
 - [ ] Backend proxy deployed
 - [ ] API keys secured
 - [ ] Rate limiting implemented
@@ -391,24 +423,28 @@ npm run dev
 ## 📞 Getting Help
 
 **If Images Don't Generate**:
+
 1. Check: Is backend deployed?
 2. Check: Is `GOOGLE_CLOUD_PROJECT_ID` set?
 3. Check: Is Imagen 3 API enabled?
 4. See: `services/imagen.ts` comments for backend code
 
 **If Audio Doesn't Generate**:
+
 1. Check: Is backend deployed?
 2. Check: Is TTS API enabled?
 3. Check: Is service account key valid?
 4. See: `services/tts.ts` comments for backend code
 
 **If Video Won't Assemble**:
+
 1. Check: Is Shotstack API key set?
 2. Check: Are all shots generated?
 3. Check: Is audio generated?
 4. See: `README.md` Phase 2 for setup
 
 **General Issues**:
+
 - Review: `README.md` troubleshooting section
 - Check: Console for error messages
 - Verify: All environment variables set

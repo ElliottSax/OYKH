@@ -1,0 +1,32 @@
+{
+  "name": "oykh-backend-functions",
+  "version": "1.0.0",
+  "description": "Cloud Functions for OYKH video generation backend",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "deploy": "npm run build && firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "@google-cloud/aiplatform": "^3.27.0",
+    "@google-cloud/storage": "^7.13.0",
+    "@google-cloud/text-to-speech": "^5.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.6.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "firebase-functions-test": "^3.3.0",
+    "typescript": "^5.8.2"
+  }
+}

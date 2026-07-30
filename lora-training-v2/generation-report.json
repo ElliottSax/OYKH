@@ -1,0 +1,305 @@
+{
+  "total": 50,
+  "succeeded": 46,
+  "failed": 4,
+  "images": [
+    {
+      "number": 2,
+      "action": "pointing at viewer",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_002_pointing_at_viewer.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, pointing at viewer, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 3,
+      "action": "pointing upward",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_003_pointing_upward.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, pointing upward, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 1,
+      "action": "pointing forward",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_001_pointing_forward.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, pointing forward, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 6,
+      "action": "hand on chin thinking",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_006_hand_on_chin_thinking.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, hand on chin thinking, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 5,
+      "action": "one arm raised",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_005_one_arm_raised.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, one arm raised, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 9,
+      "action": "looking upward pondering",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_009_looking_upward_pondering.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, looking upward pondering, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 7,
+      "action": "hand touching temple",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_007_hand_touching_temple.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, hand touching temple, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 10,
+      "action": "hand raised to head",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_010_hand_raised_to_head.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, hand raised to head, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 11,
+      "action": "holding coffee mug",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_011_holding_coffee_mug.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, holding coffee mug, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 13,
+      "action": "holding coffee mug with steam",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_013_holding_coffee_mug_with_steam.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, holding coffee mug with steam, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 15,
+      "action": "drinking coffee",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_015_drinking_coffee.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, drinking coffee, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 14,
+      "action": "coffee mug in hand",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_014_coffee_mug_in_hand.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, coffee mug in hand, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 18,
+      "action": "pointing at brain icon",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_018_pointing_at_brain_icon.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, pointing at brain icon, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 17,
+      "action": "brain icon next to head",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_017_brain_icon_next_to_head.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, brain icon next to head, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 16,
+      "action": "brain icon floating above",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_016_brain_icon_floating_above.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, brain icon floating above, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 21,
+      "action": "lightbulb appearing",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_021_lightbulb_appearing.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, lightbulb appearing, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 19,
+      "action": "brain icon overhead",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_019_brain_icon_overhead.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, brain icon overhead, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 20,
+      "action": "lightbulb above head",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_020_lightbulb_above_head.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, lightbulb above head, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 23,
+      "action": "holding lightbulb",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_023_holding_lightbulb.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, holding lightbulb, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 24,
+      "action": "holding clock",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_024_holding_clock.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, holding clock, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 26,
+      "action": "pointing at clock",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_026_pointing_at_clock.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, pointing at clock, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 27,
+      "action": "hands on hips",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_027_hands_on_hips.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, hands on hips, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 25,
+      "action": "clock icon floating",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_025_clock_icon_floating.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, clock icon floating, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 28,
+      "action": "standing straight",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_028_standing_straight.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, standing straight, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 29,
+      "action": "walking forward",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_029_walking_forward.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, walking forward, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 30,
+      "action": "sitting down",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_030_sitting_down.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, sitting down, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 31,
+      "action": "leaning forward",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_031_leaning_forward.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, leaning forward, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 32,
+      "action": "excited jumping",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_032_excited_jumping.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, excited jumping, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 33,
+      "action": "celebrating arms up",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_033_celebrating_arms_up.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, celebrating arms up, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 36,
+      "action": "pointing forward confidently",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_036_pointing_forward_confidently.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, pointing forward confidently, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 34,
+      "action": "relaxed standing",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_034_relaxed_standing.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, relaxed standing, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 35,
+      "action": "shrugging shoulders",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_035_shrugging_shoulders.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, shrugging shoulders, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 38,
+      "action": "thinking pose contemplative",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_038_thinking_pose_contemplative.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, thinking pose contemplative, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 37,
+      "action": "pointing at viewer inviting",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_037_pointing_at_viewer_inviting.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, pointing at viewer inviting, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 39,
+      "action": "holding coffee mug thoughtfully",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_039_holding_coffee_mug_thoughtfully.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, holding coffee mug thoughtfully, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 41,
+      "action": "lightbulb idea moment",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_041_lightbulb_idea_moment.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, lightbulb idea moment, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 42,
+      "action": "standing presentation pose",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_042_standing_presentation_pose.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, standing presentation pose, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 40,
+      "action": "brain icon thought bubble",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_040_brain_icon_thought_bubble.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, brain icon thought bubble, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 43,
+      "action": "explaining with gesture",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_043_explaining_with_gesture.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, explaining with gesture, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 44,
+      "action": "teaching pose pointing",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_044_teaching_pose_pointing.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, teaching pose pointing, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 45,
+      "action": "curious head tilt",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_045_curious_head_tilt.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, curious head tilt, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 46,
+      "action": "focused concentration",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_046_focused_concentration.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, focused concentration, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 47,
+      "action": "friendly welcoming stance",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_047_friendly_welcoming_stance.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, friendly welcoming stance, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 48,
+      "action": "professional standing",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_048_professional_standing.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, professional standing, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 50,
+      "action": "calm neutral pose",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_050_calm_neutral_pose.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, calm neutral pose, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    },
+    {
+      "number": 49,
+      "action": "animated explaining",
+      "path": "C:\\projects\\oykh-temp\\lora-training-v2\\images\\train_049_animated_explaining.png",
+      "prompt": "White stick figure character, perfectly round head, two simple black dot eyes, thick black outline, animated explaining, blue-purple gradient background, minimalist educational illustration, Kurzgesagt style"
+    }
+  ],
+  "errors": [
+    {
+      "number": 4,
+      "action": "arms spread wide",
+      "error": "fetch failed"
+    },
+    {
+      "number": 8,
+      "action": "arms crossed",
+      "error": "fetch failed"
+    },
+    {
+      "number": 12,
+      "action": "holding coffee mug up",
+      "error": "fetch failed"
+    },
+    {
+      "number": 22,
+      "action": "pointing at lightbulb",
+      "error": "fetch failed"
+    }
+  ]
+}
